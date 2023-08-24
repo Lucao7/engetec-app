@@ -1,2 +1,2 @@
-# engetec-app
-Desenvolvimento do app da Engetec para o estágio voluntário na Fatec Zona Leste
+# Engetec App
+Desenvolvimento do novo aplicativo da Engetec para o estágio voluntário na Fatec Zona Leste
