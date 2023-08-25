@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ForgotpassComponent } from './pages/forgotpass/forgotpass.component';
+import { ResetpassComponent } from './pages/resetpass/resetpass.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ForgotpassComponent } from './pages/forgotpass/forgotpass.component';
     LoginComponent,
     RegisterComponent,
     ForgotpassComponent,
+    ResetpassComponent,
   ],
   imports: [
     BrowserModule,
