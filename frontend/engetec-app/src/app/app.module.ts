@@ -11,6 +11,7 @@ import { ResetpassComponent } from './pages/resetpass/resetpass.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ArtigoComponent } from './pages/artigo/artigo.component';
 import { AtribuicaoComponent } from './pages/atribuicao/atribuicao.component';
+import { AvaliacaoComponent } from './pages/avaliacao/avaliacao.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AtribuicaoComponent } from './pages/atribuicao/atribuicao.component';
     DashboardComponent,
     ArtigoComponent,
     AtribuicaoComponent,
+    AvaliacaoComponent
   ],
   imports: [
     BrowserModule,
