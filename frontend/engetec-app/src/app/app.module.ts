@@ -9,6 +9,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ForgotpassComponent } from './pages/forgotpass/forgotpass.component';
 import { ResetpassComponent } from './pages/resetpass/resetpass.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ArtigoComponent } from './pages/artigo/artigo.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     ForgotpassComponent,
     ResetpassComponent,
     DashboardComponent,
+    ArtigoComponent,
   ],
   imports: [
     BrowserModule,
