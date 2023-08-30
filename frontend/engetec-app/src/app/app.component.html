@@ -1,8 +1,14 @@
-<mat-toolbar color="primary" **ngIf="isDashboard()">
+<mat-toolbar color="primary">
   <span>Engetec App</span>
   <span class="spacer"></span>
-  <button mat-flat-button>Enrar</button>
-  <button mat-flat-button>Cadastrar</button>
-  <mat-icon class="icon" aria-hidden="false" aria-label="Logout">logout</mat-icon>
+  <div *ngIf="!isLogged()">
+    <span class="nav-tool-items">
+      <a mat-button routerLink="login" routerLinkActive="active">Entrar</a>
+      <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Cadastrar</a>
+    </span>
+  </div>
+  <div *ngIf="isLogged()">
+    <mat-icon class="icon" aria-hidden="false" aria-label="Logout">logout</mat-icon>
+  </div>
 </mat-toolbar>
 <router-outlet></router-outlet>
