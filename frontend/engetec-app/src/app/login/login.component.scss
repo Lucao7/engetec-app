@@ -8,11 +8,12 @@
 .login-card {
   padding: 10px 0px;
   border-radius: 10px;
-  max-width: 320px;
+  max-width: 30%;
 }
 
 .app-logo {
-  max-width: 300px;
+  width: 100%;
+  max-width: 450px;
 }
 
 .card-divider {
@@ -27,7 +28,6 @@ mat-card-content {
 
 mat-form-field {
   width: 100%;
-  max-width: 300px;
 }
 
 .center {
@@ -46,5 +46,5 @@ mat-form-field {
   // background-color: #3ace80;
   border-radius: 10px;
   // color: white;
-  min-width: 300px;
+  min-width: 100%;
 }

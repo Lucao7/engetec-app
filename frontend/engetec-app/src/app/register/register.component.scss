@@ -1,0 +1,56 @@
+:host {
+  display: flex;
+  justify-content: center;
+  height: 88%;
+  align-items: center;
+}
+
+.register-card {
+  padding: 10px 0px;
+  border-radius: 10px;
+  max-width: 50%;
+}
+
+.app-logo {
+  width: 100%;
+  max-width: 450px;
+}
+
+.card-divider {
+  margin: 10px 0px;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+
+mat-form-field {
+  width: 50%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
+
+.register-button {
+  // background-color: #3ace80;
+  border-radius: 10px;
+  // color: white;
+  min-width: 100%;
+}
+
+@media (max-width: 900px) {
+  mat-form-field {
+    width: 100%;
+  }
+}
