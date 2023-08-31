@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 // import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
@@ -13,7 +13,6 @@ export class LoginComponent {
 
   constructor(
     // private authService: AuthService,
-    private formBuilder: FormBuilder,
     private router: Router,
   ) { }
 
