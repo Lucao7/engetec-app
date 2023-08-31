@@ -1,8 +1,10 @@
-package br.edu.fateclz.engetc.maven.model;
+package br.edu.fateczl.engetec.maven.model;
 
 import java.util.List;
 
-import enums.Status;
+import org.springframework.web.servlet.support.BindStatus;
+
+import br.edu.fateczl.engetec.maven.enums.Status;
 import lombok.Data;
 
 @Data

@@ -1,6 +1,6 @@
-package br.edu.fateclz.engetc.maven.model;
+package br.edu.fateczl.engetec.maven.model;
 
-import enums.Aceite;
+import br.edu.fateczl.engetec.maven.enums.Aceite;
 import lombok.Data;
 
 @Data

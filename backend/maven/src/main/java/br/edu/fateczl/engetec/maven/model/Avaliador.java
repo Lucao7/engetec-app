@@ -1,4 +1,4 @@
-package br.edu.fateclz.engetc.maven.model;
+package br.edu.fateczl.engetec.maven.model;
 
 import java.util.List;
 
