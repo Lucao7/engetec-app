@@ -1,7 +1,8 @@
-package br.edu.fateclz.engetc.maven.model;
+package br.edu.fateczl.engetec.maven.model;
 
 import java.util.List;
 
+import br.edu.fateczl.engetec.maven.model.Usuario;
 import lombok.Data;
 
 @Data
