@@ -11,6 +11,8 @@ import { first } from 'rxjs/operators';
 })
 export class LoginComponent {
 
+  minPW = 6;
+
   constructor(
     // private authService: AuthService,
     private router: Router,
@@ -18,7 +20,7 @@ export class LoginComponent {
 
   loginForm : FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required, Validators.minLength(this.minPW)]),
   });
   hide = true;
   error = '';

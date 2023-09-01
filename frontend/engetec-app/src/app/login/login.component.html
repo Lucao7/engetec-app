@@ -15,8 +15,9 @@
         <mat-form-field appearance="outline">
           <mat-icon matPrefix class="form-icon">alternate_email</mat-icon>
           <mat-label class="label">E-mail</mat-label>
-          <input matInput formControlName="email" placeholder="Ex: lucas.ramos@gmail.com" required>
-          <mat-error>Digite um e-mail válido</mat-error>
+          <input autofocus matInput formControlName="email" placeholder="Ex: lucas.ramos@gmail.com" required>
+          <mat-error *ngIf="loginForm.controls['email']?.hasError('required')">Digite seu e-mail</mat-error>
+          <mat-error *ngIf="loginForm.controls['email']?.hasError('email')">Digite um e-mail válido</mat-error>
         </mat-form-field>
       </div>
 
@@ -27,7 +28,8 @@
           <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" placeholder="Ex: paodebatata123" (keyup.enter)="login()" required>
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon class="visibility">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>
-          <mat-error>Digite sua senha</mat-error>
+            <mat-error *ngIf="loginForm.controls['password']?.hasError('required')">Digite sua senha</mat-error>
+            <mat-error *ngIf="loginForm.controls['password']?.hasError('minlength')">Senha muito curta</mat-error>
         </mat-form-field>
       </div>
       <div *ngIf="error" class="row center error">
