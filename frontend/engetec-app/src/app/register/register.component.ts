@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 // import { UserService } from 'src/app/services/user/user.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { passwordMatchValidator } from '../shared/password/password-match.directive'
 
 @Component({
   selector: 'app-register',
@@ -12,23 +13,33 @@ import { first } from 'rxjs/operators';
 })
 export class RegisterComponent {
 
+  minPW = 6;
+
   constructor(
     // private authService: AuthService,
     // private userService: UserService,
     private router: Router
   ) { }
 
-
-  registerForm : FormGroup = new FormGroup({
+  registerForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-    passwordconfirm: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required, Validators.minLength(this.minPW)]),
+    passwordConfirm: new FormControl('', [Validators.required]),
     documentType: new FormControl('', [Validators.required]),
     document: new FormControl('', [Validators.required]),
-  });
+  }, { validators: passwordMatchValidator });
   hide = true;
   error = '';
+
+  onPasswordInput() {
+    if (this.registerForm.controls['passwordConfirm']?.value == '')
+      this.registerForm.controls['passwordConfirm']?.setErrors({required: true});
+    else if (this.registerForm.hasError('passwordMismatch'))
+      this.registerForm.controls['passwordConfirm']?.setErrors({'passwordMismatch': true});
+    else
+      this.registerForm.controls['passwordConfirm']?.setErrors(null);
+  }
 
   get f() { return this.registerForm.controls; };
 

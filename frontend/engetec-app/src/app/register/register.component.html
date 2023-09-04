@@ -23,7 +23,8 @@
           <mat-icon matPrefix class="form-icon">alternate_email</mat-icon>
           <mat-label class="label">E-mail</mat-label>
           <input matInput formControlName="email" placeholder="Ex: lucas.ramos@gmail.com" required>
-          <mat-error>Digite um e-mail válido</mat-error>
+          <mat-error *ngIf="registerForm.controls['email']?.hasError('required')">Digite seu e-mail</mat-error>
+          <mat-error *ngIf="registerForm.controls['email']?.hasError('email')">Digite um e-mail válido</mat-error>
         </mat-form-field>
       </div>
 
@@ -53,18 +54,23 @@
           <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required>
           <button mat-icon-button matSuffix (click)="hide = !hide">
             <mat-icon class="icon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>
-          <mat-error>Digite uma senha</mat-error>
+          <mat-error *ngIf="registerForm.controls['password']?.hasError('required')">Digite uma senha</mat-error>
+          <mat-error *ngIf="registerForm.controls['password']?.hasError('minlength')">Mínimo de {{minPW}} caracteres</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-icon matPrefix class="form-icon">lock</mat-icon>
           <mat-label class="label">Confirmação</mat-label>
-          <input matInput formControlName="passwordconfirm" [type]="hide ? 'password' : 'text'" (keyup.enter)="register()" required>
+          <input matInput formControlName="passwordConfirm" [type]="hide ? 'password' : 'text'" (keyup.enter)="register()" (input)="onPasswordInput()" required>
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon class="icon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>
-          <mat-error>Digite a confirmação</mat-error>
+          <mat-error *ngIf="registerForm.controls['passwordConfirm']?.hasError('required')">Digite a confirmação</mat-error>
+          <mat-error *ngIf="registerForm.controls['passwordConfirm']?.hasError('passwordMismatch') && !registerForm.controls['passwordConfirm']?.hasError('required')">Senhas não coincidem</mat-error>
         </mat-form-field>
-        </div>
+        <!-- <div *ngIf="registerForm.errors?.['passwordMismatch'] && (registerForm.controls['passwordConfirm']?.touched)" class="alert alert-danger center">
+          Senhas não coincidem
+        </div> -->
+      </div>
     </form>
     <p *ngIf="error" class="error">
       {{ error }}
