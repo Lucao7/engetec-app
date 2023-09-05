@@ -13,7 +13,7 @@ export class AppComponent {
 
   isDashboard() {
     var url = window.location.href;
-    if (url != 'http://localhost:3001/dashboard')
+    if (url != 'http://localhost:4200/dashboard')
       return false;
     return true;
   }
