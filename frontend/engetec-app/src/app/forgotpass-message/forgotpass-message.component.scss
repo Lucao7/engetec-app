@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.forgot-card {
+.message-card {
   padding: 10px 0px;
   border-radius: 10px;
   max-width: 30%;
@@ -26,23 +26,12 @@ mat-card-content {
   justify-content: center;
 }
 
-mat-form-field {
-  width: 100%;
-}
-
 .center {
   display: flex;
   justify-content: center;
 }
 
-.error {
-  padding: 16px;
-  width: 300px;
-  color: white;
-  background-color: red;
-}
-
-.recovery-button {
+.ok-button {
   // background-color: #3ace80;
   border-radius: 10px;
   // color: white;
