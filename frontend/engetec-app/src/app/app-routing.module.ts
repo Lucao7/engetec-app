@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule) },
   { path: 'forgotpass', loadChildren: () => import('./forgotpass/forgotpass.module').then(m => m.ForgotpassModule) },
+  { path: 'forgotpassmessage', loadChildren: () => import('./forgotpass-message/forgotpass-message.module').then(m => m.ForgotpassMessageModule) },
   { path: 'resetpass', loadChildren: () => import('./resetpass/resetpass.module').then(m => m.ResetpassModule) },
   { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
   { path: 'novo-artigo', loadChildren: () => import('./artigo/artigo.module').then(m => m.ArtigoModule) },
