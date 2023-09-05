@@ -1,38 +1,30 @@
 :host {
+  min-height: 100%;
   display: flex;
   justify-content: center;
-  height: 88%;
   align-items: center;
+  flex-wrap: wrap;
+  background-image: linear-gradient(45deg, #084A76, #00A0DD);
 }
 
 .register-card {
-  padding: 10px 0px;
+  margin: 10px 10px;
+  padding: 10px 10px;
   border-radius: 10px;
-  max-width: 50%;
 }
 
 .app-logo {
   width: 100%;
-  max-width: 450px;
 }
 
 .card-divider {
   margin: 10px 0px;
 }
 
-mat-card-title,
-mat-card-content {
-  display: flex;
-  justify-content: center;
-}
-
-mat-form-field {
-  width: 50%;
-}
-
 .center {
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 .error {
@@ -47,10 +39,4 @@ mat-form-field {
   border-radius: 10px;
   // color: white;
   min-width: 100%;
-}
-
-@media (max-width: 900px) {
-  mat-form-field {
-    width: 100%;
-  }
 }
