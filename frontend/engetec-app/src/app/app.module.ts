@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { tokenInterceptorProviders } from './_interceptors/token.interceptor';
+import { AutoFocus } from './_shared/auto-focus/auto-focus.directive';
+import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularMaterialModule } from './angular-material/angular-material.module';
-import { AutoFocus } from './_shared/auto-focus/auto-focus.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { AutoFocus } from './_shared/auto-focus/auto-focus.directive';
     BrowserAnimationsModule,
     AngularMaterialModule
   ],
-  providers: [],
+  providers: [tokenInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
