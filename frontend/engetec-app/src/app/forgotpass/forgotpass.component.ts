@@ -25,11 +25,10 @@ export class ForgotpassComponent {
 
   forgotPass() {
     if(this.forgotForm.invalid) {
-      console.log('Deu ruim!');
       return;
     }
 
-    console.log('Deu bom!');
+    this.router.navigate(['/forgotpassmessage']);
 
     // this.forgotService.forgot(this.f.email.value).pipe(first()).subscribe(
     //   data => {

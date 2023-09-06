@@ -19,7 +19,7 @@
         <mat-form-field class="email-input" appearance="outline">
           <mat-icon matPrefix class="form-icon">alternate_email</mat-icon>
           <mat-label class="label">Insira seu e-mail</mat-label>
-          <input autofocus matInput formControlName="email" placeholder="Ex.: lucas.ramos@gmail.com" (keyup.enter)="forgotPass()" required>
+          <input autofocus matInput formControlName="email" placeholder="Ex.: codinglucao@gmail.com" (keyup.enter)="forgotPass()" required>
           <mat-error *ngIf="forgotForm.controls['email']?.hasError('required')">Digite seu e-mail</mat-error>
           <mat-error *ngIf="forgotForm.controls['email']?.hasError('email')">Digite um e-mail válido</mat-error>
         </mat-form-field>

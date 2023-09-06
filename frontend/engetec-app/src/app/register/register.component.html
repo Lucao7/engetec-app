@@ -22,7 +22,7 @@
         <mat-form-field class="col-md-6" appearance="outline">
           <mat-icon matPrefix class="form-icon">alternate_email</mat-icon>
           <mat-label class="label">E-mail</mat-label>
-          <input matInput formControlName="email" placeholder="Ex: lucas.ramos@gmail.com" required>
+          <input matInput formControlName="email" placeholder="Ex: codinglucao@gmail.com" required>
           <mat-error *ngIf="registerForm.controls['email']?.hasError('required')">Digite seu e-mail</mat-error>
           <mat-error *ngIf="registerForm.controls['email']?.hasError('email')">Digite um e-mail válido</mat-error>
         </mat-form-field>
@@ -35,6 +35,7 @@
           <mat-select formControlName="documentType" required>
             <mat-option value="matricula">Matrícula</mat-option>
             <mat-option value="RA">RA</mat-option>
+            <mat-option value="outro">Outro</mat-option>
           </mat-select>
           <mat-error>Selecione uma opção</mat-error>
         </mat-form-field>

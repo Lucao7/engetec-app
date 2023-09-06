@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 // import { UserService } from 'src/app/services/user/user.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { passwordMatchValidator } from '../shared/password/password-match.directive'
+import { passwordMatchValidator } from '../_shared/password/password-match.directive'
 
 @Component({
   selector: 'app-register',
@@ -48,6 +48,8 @@ export class RegisterComponent {
     if (this.registerForm.invalid) {
       return;
     }
+
+    this.router.navigate(['/dashboard']);
 
     // this.userService.postUser(this.f['name'].value, this.f['email'].value, this.f['document'].value, this.f['password'].value)
     //   .pipe(first())

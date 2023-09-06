@@ -30,15 +30,10 @@ export class LoginComponent {
   login() {
     // stop here if form is invalid
     if (this.loginForm.invalid) {
-      console.log("Tá dando ruim")
-      console.log(this.f['email'].value)
-      console.log(this.f['password'].value)
       return;
     }
 
-    console.log("Tá indo")
-    console.log(this.f['email'].value)
-    console.log(this.f['password'].value)
+    this.router.navigate(['/dashboard']);
 
     // this.authService.login(this.f['email'].value, this.f['password'].value)
     //   .pipe(first())
