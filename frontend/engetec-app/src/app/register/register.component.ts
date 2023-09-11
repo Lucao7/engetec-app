@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-// import { AuthService } from 'src/app/services/auth/auth.service';
-// import { UserService } from 'src/app/services/user/user.service';
+import { AuthService } from '../_services/auth/auth.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { passwordMatchValidator } from '../_shared/password/password-match.directive'
@@ -16,8 +15,7 @@ export class RegisterComponent {
   minPW = 6;
 
   constructor(
-    // private authService: AuthService,
-    // private userService: UserService,
+    private authService: AuthService,
     private router: Router
   ) { }
 
@@ -49,28 +47,35 @@ export class RegisterComponent {
       return;
     }
 
-    this.router.navigate(['/dashboard']);
+    // this.router.navigate(['/dashboard']);
+    let name = this.f['name'].value;
+    let email = this.f['email'].value;
+    let documentType = this.f['documentType'].value;
+    let document = this.f['document'].value;
+    let password = this.f['password'].value;
 
-    // this.userService.postUser(this.f['name'].value, this.f['email'].value, this.f['document'].value, this.f['password'].value)
-    //   .pipe(first())
-    //     .subscribe(
-    //       data => {
-    //         // Auto login after register
-    //         this.authService.login(this.f.email.value, this.f.password.value)
-    //           .pipe(first())
-    //             .subscribe(
-    //               data => {
-    //                 this.router.navigate(['/dashboard']);
-    //               },
-    //               error => {
-    //                 this.error = error;
-    //                 console.log("LoginPage Error", this.error);
-    //               });
-    //       },
-    //     error => {
-    //       this.error = error;
-    //       console.log("LoginPage Error", this.error);
-    //     });
+    this.authService.register(name, email, documentType, document, password)
+      .pipe(first())
+        .subscribe(
+          data => {
+            // Auto login after register
+            this.authService.login(email, password)
+              .pipe(first())
+                .subscribe(
+                  data => {
+                    this.router.navigate(['/dashboard']);
+                  },
+                  error => {
+                    this.error = error.message;
+                    console.log("Login Error", this.error);
+                  }
+                );
+          },
+          error => {
+            this.error = error.message;
+            console.log("Register Error", this.error);
+          }
+        );
   }
 
 }

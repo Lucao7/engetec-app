@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-// import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../_services/auth/auth.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
@@ -14,7 +14,7 @@ export class LoginComponent {
   minPW = 6;
 
   constructor(
-    // private authService: AuthService,
+    private authService: AuthService,
     private router: Router,
   ) { }
 
@@ -33,17 +33,19 @@ export class LoginComponent {
       return;
     }
 
-    this.router.navigate(['/dashboard']);
+    // this.router.navigate(['/dashboard']);
+    let email = this.f['email'].value;
+    let password = this.f['password'].value;
 
-    // this.authService.login(this.f['email'].value, this.f['password'].value)
-    //   .pipe(first())
-    //   .subscribe(
-    //     data => {
-    //       this.router.navigate(['/dashboard']);
-    //     },
-    //     error => {
-    //       this.error = error;
-    //       console.log("LoginPage Error", this.error);
-    //     });
+    this.authService.login(email, password)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate(['/dashboard']);
+        },
+        error => {
+          this.error = error.message;
+          console.log("Login Error", this.error);
+        });
   }
 }
