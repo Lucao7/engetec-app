@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+
 import { StorageService } from '../storage/storage.service';
 
 const httpOptions = {
@@ -34,8 +35,8 @@ export class AuthService {
       httpOptions
     ).pipe(map(data => {
       this._isLoggedIn.next(true);
-      let user = { user: data};
-      this.storageService.setUser(user);
+      let token = { token: data};
+      this.storageService.setToken(token);
     }));
   }
 

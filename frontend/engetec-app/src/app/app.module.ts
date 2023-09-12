@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { tokenInterceptorProviders } from './_interceptors/token.interceptor';
+import { AuthInterceptorProvider } from './_interceptors/auth.interceptor';
 import { AutoFocus } from './_shared/auto-focus/auto-focus.directive';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +19,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     AngularMaterialModule
   ],
-  providers: [tokenInterceptorProviders],
+  providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
