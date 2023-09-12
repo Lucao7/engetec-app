@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-// import { ForgotPassService } from '../../services/forgot/forgot-pass.service';
+// import { PasswordService } from '../../services/password/password.service';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class ForgotpassComponent {
 
   constructor(
-    // private forgotService: ForgotPassService,
+    // private passwordService: PasswordService,
     private router: Router
   ) { }
 
@@ -29,8 +29,9 @@ export class ForgotpassComponent {
     }
 
     this.router.navigate(['/forgotpassmessage']);
+    let email = this.f['email'].value;
 
-    // this.forgotService.forgot(this.f.email.value).pipe(first()).subscribe(
+    // this.passwordService.forgot(email).pipe(first()).subscribe(
     //   data => {
     //     this.router.navigate(['/forgotpassmessage']);
     //   },
