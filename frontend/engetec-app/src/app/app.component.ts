@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import { AuthService } from './services/auth/auth.service';
+import { AuthService } from './_services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +9,19 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'engetec-app';
 
-  // private authService: AuthService;
+  constructor (
+    private authService: AuthService,
+  ) {}
 
   isDashboard() {
     var url = window.location.href;
-    if (url != 'http://localhost:3001/dashboard')
+    if (url != 'http://localhost:4200/dashboard')
       return false;
     return true;
   }
 
   isLogged() {
-    // return this.authService.isLogged;
-    return false
+    return this.authService.isLoggedIn;
+    // return false
   }
 }

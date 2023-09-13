@@ -1,0 +1,12 @@
+br\edu\fateczl\engetec\maven\persistence\GenericDao.class
+br\edu\fateczl\engetec\maven\model\Avaliador.class
+br\edu\fateczl\engetec\maven\enums\Status.class
+br\edu\fateczl\engetec\maven\enums\Aceite.class
+br\edu\fateczl\engetec\maven\model\Artigo.class
+br\edu\fateczl\engetec\maven\repository\AlunoRepository.class
+br\edu\fateczl\engetec\maven\model\Aluno.class
+br\edu\fateczl\engetec\maven\App.class
+br\edu\fateczl\engetec\maven\model\Area.class
+br\edu\fateczl\engetec\maven\model\Usuario.class
+br\edu\fateczl\engetec\maven\model\Avaliacao.class
+br\edu\fateczl\engetec\maven\model\AvaliadorArea.class

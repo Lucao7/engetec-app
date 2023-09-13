@@ -1,0 +1,42 @@
+:host {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-image: linear-gradient(45deg, #084A76, #00A0DD);
+}
+
+.reset-card {
+  margin: 10px 10px;
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+
+.app-logo {
+  width: 100%;
+}
+
+.card-divider {
+  margin: 10px 0px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
+
+.reset-button {
+  // background-color: #3ace80;
+  border-radius: 10px;
+  // color: white;
+  min-width: 100%;
+}
