@@ -1,7 +1,6 @@
-<mat-toolbar *ngIf="isLogged()" color="primary">
-  <img class="app-logo" src="assets/img/logos/logo-branco.png" alt="Logo Engetec">
-  <span class="spacer"></span>
-  <div *ngIf="isLogged()">
+<mat-toolbar *ngIf="isLogged()" color="primary" class="row justify-content-between">
+  <img class="col-6 col-sm-1" src="assets/img/logos/logo-branco.png" alt="Logo Engetec">
+  <div *ngIf="isLogged()" class="col-2 col-sm-2 align-content-end">
     <mat-icon class="icon" aria-hidden="false" aria-label="Logout">logout</mat-icon>
   </div>
 </mat-toolbar>
