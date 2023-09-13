@@ -32,9 +32,6 @@
           <mat-error *ngIf="resetForm.controls['passwordConfirm']?.hasError('passwordMismatch') && !resetForm.controls['passwordConfirm']?.hasError('required')">Senhas não coincidem</mat-error>
         </mat-form-field>
       </div>
-      <div *ngIf="error" class="row center error">
-        {{ error }}
-      </div>
     </form>
   </mat-card-content>
 

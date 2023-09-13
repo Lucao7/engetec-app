@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 // import { PasswordService } from '../../services/password/password.service';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-forgotpass',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class ForgotpassComponent {
 
   constructor(
+    // private toast: ToastrService,
     // private passwordService: PasswordService,
     private router: Router
   ) { }
@@ -36,8 +38,10 @@ export class ForgotpassComponent {
     //     this.router.navigate(['/forgotpassmessage']);
     //   },
     //   error => {
-    //     this.error = error;
-    //     console.log("Forgot page error", this.error)
+    //    console.log("Forgot Error", error);
+    //    error.message.forEach((element: string | undefined) => {
+    //      this.toast.error(element, 'Forgot')
+    //    });
     //   }
     // )
   }

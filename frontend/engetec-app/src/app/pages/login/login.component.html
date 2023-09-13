@@ -32,9 +32,6 @@
             <mat-error *ngIf="loginForm.controls['password']?.hasError('minlength')">Senha muito curta</mat-error>
         </mat-form-field>
       </div>
-      <div *ngIf="error" class="row center error">
-        {{ error }}
-      </div>
       <div class="row center">
         <span class="center"><a class="forgot-pass" routerLink="/forgotpass">Esqueci minha senha!</a></span>
       </div>

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../_services/auth/auth.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent {
   minPW = 6;
 
   constructor(
+    private toast: ToastrService,
     private authService: AuthService,
     private router: Router,
   ) { }
@@ -44,8 +46,10 @@ export class LoginComponent {
           this.router.navigate(['/dashboard']);
         },
         error => {
-          this.error = error.message;
-          console.log("Login Error", this.error);
+          console.log("Login Error", error);
+          error.message.forEach((element: string | undefined) => {
+            this.toast.error(element, 'Login')
+          });
         });
   }
 }

@@ -8,6 +8,7 @@ import { AutoFocus } from './_shared/auto-focus/auto-focus.directive';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,12 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      closeButton: true,
+      progressBar: true
+    })
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

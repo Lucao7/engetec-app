@@ -4,6 +4,7 @@ import { AuthService } from '../../_services/auth/auth.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { passwordMatchValidator } from '../../_shared/password/password-match.directive'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,7 @@ export class RegisterComponent {
   minPW = 6;
 
   constructor(
+    private toast: ToastrService,
     private authService: AuthService,
     private router: Router
   ) { }
@@ -28,7 +30,6 @@ export class RegisterComponent {
     document: new FormControl('', [Validators.required]),
   }, { validators: passwordMatchValidator });
   hide = true;
-  error = '';
 
   onPasswordInput() {
     if (this.registerForm.controls['passwordConfirm']?.value == '')
@@ -66,14 +67,18 @@ export class RegisterComponent {
                     this.router.navigate(['/dashboard']);
                   },
                   error => {
-                    this.error = error.message;
-                    console.log("Login Error", this.error);
+                    console.log("Login Error", error);
+                    error.message.forEach((element: string | undefined) => {
+                      this.toast.error(element, 'Register')
+                    });
                   }
                 );
           },
           error => {
-            this.error = error.message;
-            console.log("Register Error", this.error);
+            console.log("Register Error", error);
+            error.message.forEach((element: string | undefined) => {
+              this.toast.error(element, 'Register')
+            });
           }
         );
   }

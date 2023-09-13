@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { passwordMatchValidator } from 'src/app/_shared/password/password-match.directive';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-resetpass',
@@ -15,6 +16,7 @@ export class ResetpassComponent {
   minPW = 6;
 
   constructor(
+    // private toast: ToastrService,
     // private passwordService: PasswordService,
     private router: Router
   ) { }
@@ -24,7 +26,6 @@ export class ResetpassComponent {
     passwordConfirm: new FormControl('', [Validators.required]),
   }, { validators: passwordMatchValidator });
   hide = true;
-  error = '';
 
   onPasswordInput() {
     if (this.resetForm.controls['passwordConfirm']?.value == '')
@@ -50,8 +51,9 @@ export class ResetpassComponent {
     //     this.router.navigate(['/login']);
     //   },
     //   error => {
-    //     this.error = error;
-    //     console.log("Reset page error", this.error)
+    //    console.log("Forgot Error", error);
+    //    error.message.forEach((element: string | undefined) => {
+    //      this.toast.error(element, 'Forgot')
     //   }
     // )
   }
