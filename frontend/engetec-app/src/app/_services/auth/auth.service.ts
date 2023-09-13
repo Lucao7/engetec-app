@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
@@ -18,11 +19,12 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private router: Router
   ) {}
 
   get isLoggedIn() {
-    return this._isLoggedIn.asObservable();
+    return this._isLoggedIn['_value'];
   }
 
   login(email: string, password: string): Observable<any> {
@@ -35,8 +37,7 @@ export class AuthService {
       httpOptions
     ).pipe(map(data => {
       this._isLoggedIn.next(true);
-      let token = { token: data};
-      this.storageService.setToken(token);
+      this.storageService.setToken(data);
     }));
   }
 
@@ -54,10 +55,11 @@ export class AuthService {
     );
   }
 
-  logout(): Observable<any> {
-    return this.http.post(environment.authUrl + 'logout', { }, httpOptions).pipe(map(data => {
+  logout()/*: Observable<any>*/ {
+    // return this.http.post(environment.authUrl + '/logout', { }, httpOptions).pipe(map(data => {
       this._isLoggedIn.next(false);
       this.storageService.clean();
-    }));
+      this.router.navigate(['/login']);
+    // }));
   }
 }
