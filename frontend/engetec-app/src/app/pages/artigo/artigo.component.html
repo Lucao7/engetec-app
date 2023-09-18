@@ -1,1 +1,42 @@
-<p>artigo works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Enviar Artigo</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <form [formGroup]="artigoForm">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix class="form-icon">title</mat-icon>
+          <mat-label class="label">Título</mat-label>
+          <input autofocus matInput formControlName="email" placeholder="Ex: Internet das coisas e seu impacto atual" required>
+          <mat-error *ngIf="artigoForm.controls['title']?.hasError('required')">Digite seu e-mail</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix class="form-icon">vpn_key</mat-icon>
+          <mat-label class="label">Palavras-chave</mat-label>
+          <input autofocus matInput formControlName="email" placeholder="Ex: IoT, Teecnologia, Cloud" required>
+          <mat-error *ngIf="artigoForm.controls['title']?.hasError('required')">Digite as palavras-chave</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix class="form-icon">group</mat-icon>
+          <mat-label class="label">Integrantes</mat-label>
+          <input autofocus matInput formControlName="email" placeholder="Ex: Breno, Gilberto, Lucas" required>
+          <mat-error *ngIf="artigoForm.controls['group']?.hasError('required')">Digite os integrantes</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix class="form-icon">assignment</mat-icon>
+          <mat-label>Áreas</mat-label>
+          <mat-select formControlName="areas" required>
+            <mat-option *ngFor="let area of areas" value="{{area.id}}">{{area.name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="artigoForm.controls['areas']?.hasError('required')">Selecione no mínimo uma área</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions align="end">
+    <button mat-button (click)="enviar()" class="col-1 button">Enviar</button>
+  </mat-card-actions>
+</mat-card>
