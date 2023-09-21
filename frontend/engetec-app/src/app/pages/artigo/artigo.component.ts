@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AreaService } from 'src/app/_services/area/area.service';
 import { Area } from 'src/app/_models/area';
+import { FileValidator } from 'ngx-material-file-input';
 
 @Component({
   selector: 'app-artigo',
@@ -11,6 +12,10 @@ import { Area } from 'src/app/_models/area';
   styleUrls: ['./artigo.component.scss']
 })
 export class ArtigoComponent implements OnInit {
+
+  // Sets the file max size to 5MB
+  readonly MB = 5;
+  readonly maxSize = this.MB * 2 ** 20;
 
   areas: Area[] = [];
 
@@ -25,13 +30,20 @@ export class ArtigoComponent implements OnInit {
     keywords: new FormControl('', [Validators.required]),
     group: new FormControl('', [Validators.required]),
     areas: new FormControl('', [Validators.required]),
-    artigo: new FormControl(undefined, [Validators.required]),
+    artigo: new FormControl(undefined, [Validators.required, FileValidator.maxContentSize(this.maxSize)]),
   });
 
   get f() { return this.artigoForm.controls; };
 
   ngOnInit(): void {
     this.getCategories();
+  }
+
+  onFileInput() {
+    setTimeout(() => {
+      if (this.f['artigo'].value._files[0].type != "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+        this.artigoForm.controls['artigo']?.setErrors({invalid: true});
+    }, 10);
   }
 
   enviar() {

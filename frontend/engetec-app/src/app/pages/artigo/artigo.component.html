@@ -34,13 +34,14 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-icon matPrefix class="form-icon">attach_file</mat-icon>
-          <ngx-mat-file-input #removableInput formControlName="artigo" [accept]="'.docx'" required></ngx-mat-file-input>
+          <ngx-mat-file-input #artigo formControlName="artigo" [accept]="'.docx'" (input)="onFileInput()" required></ngx-mat-file-input>
           <mat-label>Insira seu artigo (.docx)</mat-label>
-          <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+          <button mat-icon-button matSuffix *ngIf="!artigo.empty" (click)="artigo.clear($event)">
             <mat-icon>clear</mat-icon>
           </button>
           <mat-error *ngIf="artigoForm.controls['artigo']?.hasError('required')">Insira seu artigo</mat-error>
           <mat-error *ngIf="artigoForm.controls['artigo']?.hasError('invalid')">Insira o formato correto! (.docx)</mat-error>
+          <mat-error *ngIf="artigoForm.controls['artigo']?.hasError('maxContentSize')">O arquivo deve conter no máximo {{MB}} MB</mat-error>
         </mat-form-field>
       </div>
     </form>
