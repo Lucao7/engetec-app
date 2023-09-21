@@ -36,7 +36,7 @@ export class ArtigoComponent implements OnInit {
   get f() { return this.artigoForm.controls; };
 
   ngOnInit(): void {
-    this.getCategories();
+    this.getAreas();
   }
 
   onFileInput() {
@@ -50,7 +50,7 @@ export class ArtigoComponent implements OnInit {
 
   }
 
-  getCategories() {
+  getAreas() {
     // this.areaService.getAreas()
     //   .subscribe(
     //     areas => {
@@ -59,7 +59,7 @@ export class ArtigoComponent implements OnInit {
     //     error => {
     //       console.log("Get Areas error - ", error);
     //       error.message.forEach((element: string | undefined) => {
-    //         this.toast.error(element, 'Login')
+    //         this.toast.error(element, 'Get Areas')
     //       });
     //     }
     //   );

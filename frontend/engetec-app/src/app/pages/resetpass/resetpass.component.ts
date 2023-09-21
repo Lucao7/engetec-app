@@ -51,9 +51,9 @@ export class ResetpassComponent {
     //     this.router.navigate(['/login']);
     //   },
     //   error => {
-    //    console.log("Forgot Error", error);
+    //    console.log("ResetPass Error", error);
     //    error.message.forEach((element: string | undefined) => {
-    //      this.toast.error(element, 'Forgot')
+    //      this.toast.error(element, 'ResetPass')
     //   }
     // )
   }
