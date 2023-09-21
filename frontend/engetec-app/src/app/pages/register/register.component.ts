@@ -34,7 +34,7 @@ export class RegisterComponent {
   onPasswordInput() {
     if (this.registerForm.controls['passwordConfirm']?.value == '')
       this.registerForm.controls['passwordConfirm']?.setErrors({required: true});
-    else if (this.registerForm.hasError('passwordMismatch'))
+    else if (this.registerForm.hasError('passwordMismatch') && this.registerForm.touched)
       this.registerForm.controls['passwordConfirm']?.setErrors({'passwordMismatch': true});
     else
       this.registerForm.controls['passwordConfirm']?.setErrors(null);

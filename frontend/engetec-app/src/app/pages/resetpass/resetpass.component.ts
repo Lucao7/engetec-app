@@ -30,7 +30,7 @@ export class ResetpassComponent {
   onPasswordInput() {
     if (this.resetForm.controls['passwordConfirm']?.value == '')
       this.resetForm.controls['passwordConfirm']?.setErrors({required: true});
-    else if (this.resetForm.hasError('passwordMismatch'))
+    else if (this.resetForm.hasError('passwordMismatch') && this.resetForm.touched)
       this.resetForm.controls['passwordConfirm']?.setErrors({'passwordMismatch': true});
     else
       this.resetForm.controls['passwordConfirm']?.setErrors(null);
