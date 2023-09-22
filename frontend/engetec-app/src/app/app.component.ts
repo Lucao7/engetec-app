@@ -13,15 +13,7 @@ export class AppComponent {
     private authService: AuthService,
   ) {}
 
-  isDashboard() {
-    var url = window.location.href;
-    if (url != 'http://localhost:4200/dashboard')
-      return false;
-    return true;
-  }
-
   isLogged() {
     return this.authService.isLoggedIn;
-    // return false
   }
 }
