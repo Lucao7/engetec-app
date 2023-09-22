@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private _isLoggedIn = new BehaviorSubject<boolean>(false);
+  private _isLoggedIn = new BehaviorSubject<boolean>(this.storageService.isLoggedIn());
 
   constructor(
     private http: HttpClient,
