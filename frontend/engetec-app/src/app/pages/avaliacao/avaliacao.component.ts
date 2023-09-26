@@ -1,5 +1,4 @@
 import { UserService } from './../../_services/user/user.service';
-import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -15,7 +14,6 @@ export class AvaliacaoComponent {
 
   constructor(
     private toast: ToastrService,
-    private router: Router,
     private avaliacaoService: AvaliacaoService,
     private userService: UserService
   ) { }
@@ -43,9 +41,6 @@ export class AvaliacaoComponent {
     this.avaliacaoService.postAvaliacao(artigoID, avaliadorDocument, nota, razao)
       .pipe(first())
       .subscribe(
-        data => {
-          this.router.navigate(['/dashboard']);
-        },
         error => {
           console.log("Login Error", error);
           error.message.forEach((element: string | undefined) => {
