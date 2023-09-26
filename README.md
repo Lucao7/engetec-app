@@ -1,34 +1,26 @@
 # Engetec App
 Desenvolvimento do novo aplicativo da Engetec para o estágio voluntário na Fatec Zona Leste
 
-Node version: 18.15.0
-Npm verion: 8.4.0
+Node version: 18.15.0 </br>
+Npm verion: 8.4.0 </br>
 Angular version: 16.2.0
 
-# Engetec App
+# Para rodar o FrontEnd:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0
+## Caso não possua os requisitos, instale-os:
 
-## Development server
+*  [NodeJS](https://nodejs.org/dist/v18.15.0/) </br>
+*  Angular: Após instalar o Node, utilize o seguinte comando no cmd: `npm i -g @angular/cli@16.2.0`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Depois de clonar o projeto:
 
-## Code scaffolding
+Abra a pasta da aplicação angular (engetec-app/frontend/engetec-app) no cmd e utilize o seguinte comando: `npm i`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Para rodar o BackEnd: 
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+JDK17 </br>
+Criação do banco de dados (engetec) </br>
+Criações das variáveis de ambiente mapeadas no 'application.properties':
+*  `DB_USER` que representa o usuário do banco de dados
+*  `DB_PASSWORD` que representa a senha do usuário do banco de dados
+*  `DB_URL` que representa a url do banco do banco de dados e deve estar da seguinte maneira `jdbc:mysql://localhost:{PORT}/{DB_NAME}` (invés de '{PORT}' coloque o número da porta e invés de '{DB_NAME}' coloque o nome do banco de dados
