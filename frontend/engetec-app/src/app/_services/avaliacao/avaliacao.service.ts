@@ -33,12 +33,12 @@ export class AvaliacaoService {
     }));
   }
 
-  getAvaliacao(idavAliacao: number) {
-    return this.http.get(environment.apiUrl + 'avaliacao/' + idavAliacao);
+  getAvaliacao(idAvaliacao: number) {
+    return this.http.get(environment.apiUrl + 'avaliacao/' + idAvaliacao);
   }
 
-  deleteAvaliacao(idavAliacao: number) {
-    return this.http.delete(environment.apiUrl + 'avaliacao/' + idavAliacao);
+  deleteAvaliacao(idAvaliacao: number) {
+    return this.http.delete(environment.apiUrl + 'avaliacao/' + idAvaliacao);
   }
 
   getAvaliacoes(idArtigo: number) {
