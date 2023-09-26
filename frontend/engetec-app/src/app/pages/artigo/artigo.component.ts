@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -21,7 +20,6 @@ export class ArtigoComponent implements OnInit {
 
   constructor(
     private toast: ToastrService,
-    private router: Router,
     private areaService: AreaService,
   ) { }
 
