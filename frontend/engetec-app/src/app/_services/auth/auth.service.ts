@@ -38,6 +38,7 @@ export class AuthService {
     ).pipe(map(data => {
       this._isLoggedIn.next(true);
       this.storageService.setToken(data);
+      this.router.navigate(['/dashboard']);
     }));
   }
 
