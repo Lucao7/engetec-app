@@ -49,7 +49,7 @@ export class RegisterComponent {
     let name = this.f['name'].value;
     let email = this.f['email'].value;
     let documentType = this.f['documentType'].value;
-    let document = this.f['document'].value;
+    let document: number = +this.f['document'].value;
     let password = this.f['password'].value;
 
     this.authService.register(name, email, documentType, document, password)

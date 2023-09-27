@@ -42,15 +42,14 @@ export class AuthService {
     }));
   }
 
-  register(name: string, email: string, documentType: string, document: string, password: string): Observable<any> {
+  register(name: string, email: string, documentType: string, document: number, password: string): Observable<any> {
     return this.http.post(
-      environment.authUrl + 'register',
+      environment.alunoUrl,
       {
-        name,
-        email,
-        documentType,
-        document,
-        password,
+        "ra": document,
+        "email": email,
+        "nome": name,
+        "senha": password,
       },
       httpOptions
     );
