@@ -12,6 +12,8 @@ import { AvaliacaoService } from 'src/app/_services/avaliacao/avaliacao.service'
 })
 export class AvaliacaoComponent {
 
+  title: string = 'Artigo X';
+
   constructor(
     private toast: ToastrService,
     private avaliacaoService: AvaliacaoService,
@@ -19,7 +21,6 @@ export class AvaliacaoComponent {
   ) { }
 
   avaliacaoForm : FormGroup = new FormGroup({
-    title: new FormControl({value: '', disabled: true}, [Validators.required]),
     group: new FormControl('', [Validators.required]),
     areas: new FormControl('', [Validators.required]),
   });
@@ -33,20 +34,20 @@ export class AvaliacaoComponent {
     }
 
     // this.router.navigate(['/dashboard']);
-    let artigoID = this.idArtigo;
-    let avaliadorDocument = this.userService.getAvaliadorDocument();
+    // let artigoID = this.idArtigo;
+    // let avaliadorDocument = this.userService.getAvaliadorDocument();
     let nota = this.f['nota'].value;
     let razao = this.f['razao'].value;
 
-    this.avaliacaoService.postAvaliacao(artigoID, avaliadorDocument, nota, razao)
-      .pipe(first())
-      .subscribe(
-        error => {
-          console.log("Login Error", error);
-          error.message.forEach((element: string | undefined) => {
-            this.toast.error(element, 'Login')
-          });
-        });
+  //   this.avaliacaoService.postAvaliacao(artigoID, avaliadorDocument, nota, razao)
+  //     .pipe(first())
+  //     .subscribe(
+  //       error => {
+  //         console.log("Login Error", error);
+  //         error.message.forEach((element: string | undefined) => {
+  //           this.toast.error(element, 'Login')
+  //         });
+  //       });
   }
 
 }
