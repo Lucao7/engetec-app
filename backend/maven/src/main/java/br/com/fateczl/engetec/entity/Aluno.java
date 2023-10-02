@@ -18,7 +18,7 @@ public class Aluno {
 	private Long ra;
 	@OneToMany(mappedBy = "aluno")
 	private List<Artigo> artigos;
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	

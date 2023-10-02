@@ -24,7 +24,7 @@ public class Usuario {
 	private String email;
 	@Column(nullable = false)
 	private String nome;
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "senha_id")
 	private Senha senha;
 	

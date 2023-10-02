@@ -29,6 +29,23 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
+	public ResponseEntity<?> logar(String email, String senha){
+		if(usuarioRepository.countByEmail(email)==0) {
+			mensagem.setMensagem("email não existe");
+			return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+		} else {
+			Usuario usuario = usuarioRepository.findByEmail(email);
+			if(!HashSenha.verifyPassword(senha, usuario.getSenha().getHashSenha(), 
+					usuario.getSenha().getSalt())){
+				mensagem.setMensagem("senha incorreta");
+				return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+			} else {
+				mensagem.setMensagem("logado");
+				return new ResponseEntity<>(mensagem, HttpStatus.OK);
+			}
+		}
+	}
+	
 	//Método para cadastrar alunos 
 	public Usuario cadastrar(Usuario usuario, String senha) {
 		Senha objSenha = hashSenha.tratamentoSenha(senha);
