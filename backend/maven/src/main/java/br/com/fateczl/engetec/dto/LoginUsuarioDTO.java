@@ -11,6 +11,17 @@ public class LoginUsuarioDTO {
 	@NotBlank(message = "Informe uma senha válida")
 	private String senha;
 	
+	public LoginUsuarioDTO(String email, String senha) {
+	super();
+	this.email = email;
+	this.senha = senha;
+	}
+
+	public LoginUsuarioDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -26,4 +37,12 @@ public class LoginUsuarioDTO {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
+	@Override
+	public String toString() {
+		return "LoginUsuarioDTO [email=" + email + ", senha=" + senha + "]";
+	}
+	
+	
+	
 }
