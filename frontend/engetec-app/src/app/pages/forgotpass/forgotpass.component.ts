@@ -30,12 +30,12 @@ export class ForgotpassComponent {
       return;
     }
 
-    this.router.navigate(['/forgotpassmessage']);
+    this.router.navigate(['/forgotpass-message']);
     let email = this.f['email'].value;
 
     // this.passwordService.forgot(email).pipe(first()).subscribe(
     //   data => {
-    //     this.router.navigate(['/forgotpassmessage']);
+    //     this.router.navigate(['/forgotpass-message']);
     //   },
     //   error => {
     //    console.log("Forgot Error", error);

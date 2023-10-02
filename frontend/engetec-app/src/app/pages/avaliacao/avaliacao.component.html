@@ -1,1 +1,28 @@
-<p>avaliacao works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Enviar Avaliação - {{title}}</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <form [formGroup]="avaliacaoForm">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix class="form-icon">vpn_key</mat-icon>
+          <mat-label class="label">Palavras-chave</mat-label>
+          <input matInput formControlName="keywords" placeholder="Ex: IoT, Teecnologia, Cloud" required>
+          <mat-error *ngIf="avaliacaoForm.controls['title']?.hasError('required')">Digite as palavras-chave</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix class="form-icon">group</mat-icon>
+          <mat-label class="label">Integrantes</mat-label>
+          <input matInput formControlName="group" placeholder="Ex: Breno, Gilberto, Lucas" required>
+          <mat-error *ngIf="avaliacaoForm.controls['group']?.hasError('required')">Digite os integrantes</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions align="end">
+    <button mat-button (click)="enviar()" class="col-1 button">Enviar</button>
+  </mat-card-actions>
+</mat-card>

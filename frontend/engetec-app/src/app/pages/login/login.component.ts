@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../_services/auth/auth.service';
-import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
@@ -17,7 +16,6 @@ export class LoginComponent {
   constructor(
     private toast: ToastrService,
     private authService: AuthService,
-    private router: Router,
   ) { }
 
   loginForm : FormGroup = new FormGroup({
@@ -42,9 +40,6 @@ export class LoginComponent {
     this.authService.login(email, password)
       .pipe(first())
       .subscribe(
-        data => {
-          this.router.navigate(['/dashboard']);
-        },
         error => {
           console.log("Login Error", error);
           error.message.forEach((element: string | undefined) => {
