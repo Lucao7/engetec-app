@@ -29,10 +29,10 @@ export class AuthService {
 
   login(email: string, password: string): Observable<any> {
     return this.http.post(
-      environment.authUrl + 'login',
+      environment.authUrl,
       {
-        email,
-        password,
+        "email": email,
+        "senha": password,
       },
       httpOptions
     ).pipe(map(data => {
