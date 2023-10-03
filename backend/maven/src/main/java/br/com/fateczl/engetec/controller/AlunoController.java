@@ -1,23 +1,17 @@
 package br.com.fateczl.engetec.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fateczl.engetec.dto.AlunoDTO;
-import br.com.fateczl.engetec.entity.Aluno;
-import br.com.fateczl.engetec.login.AlunoLogin;
 import br.com.fateczl.engetec.repository.AlunoRepository;
 import br.com.fateczl.engetec.service.AlunoService;
 import jakarta.validation.Valid;
@@ -85,6 +79,11 @@ public class AlunoController {
 	public ResponseEntity<?> cadastrar(@Valid @RequestBody AlunoDTO alunoDTO) {
 		return alunoService.cadastrar(alunoDTO);
 	}
+	
+//	@PostMapping(path = "/addArtigo")
+//	public ResponseEntity<?> addArtigo(@RequestParam AlunoDTO alunoDTO) {
+//		return alunoService.cadastrar(alunoDTO);
+//	}
 	
 //	@PostMapping(path = "/login")
 //	public ResponseEntity<?> logar(@Valid @RequestBody AlunoLogin alunoLogin) {
