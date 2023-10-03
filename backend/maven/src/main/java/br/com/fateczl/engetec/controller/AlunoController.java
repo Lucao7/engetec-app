@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.fateczl.engetec.dto.AlunoDTO;
+import br.com.fateczl.engetec.entity.Disco;
 import br.com.fateczl.engetec.repository.AlunoRepository;
 import br.com.fateczl.engetec.service.AlunoService;
 import jakarta.validation.Valid;
@@ -19,6 +23,10 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/aluno")
 public class AlunoController {
+	
+	@Autowired
+	private Disco disco;
+	
 	@Autowired
 	private AlunoRepository alunoRepository;
 	
@@ -80,11 +88,11 @@ public class AlunoController {
 		return alunoService.cadastrar(alunoDTO);
 	}
 	
-//	@PostMapping(path = "/addArtigo")
-//	public ResponseEntity<?> addArtigo(@RequestParam AlunoDTO alunoDTO) {
-//		return alunoService.cadastrar(alunoDTO);
-//	}
-	
+	@PostMapping(path = "/addArtigo")
+	public void addArtigo(@RequestParam MultipartFile arquivo) {
+		disco.salvarArtigo(arquivo);
+	}
+//	
 //	@PostMapping(path = "/login")
 //	public ResponseEntity<?> logar(@Valid @RequestBody AlunoLogin alunoLogin) {
 //		return alunoService.logar(alunoLogin);

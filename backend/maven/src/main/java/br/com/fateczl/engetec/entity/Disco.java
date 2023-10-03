@@ -16,7 +16,7 @@ public class Disco {
 	@Value("${disco.raiz}")
 	private String raiz;
 	
-	@Value("${discodiretorio-artigos}")
+	@Value("${disco.diretorio-artigos}")
 	private String diretorioArtigos;
 	
 	public void salvarArtigo(MultipartFile artigo) {
