@@ -1,4 +1,4 @@
-package br.com.fateczl.engetec.senha;
+/*package br.com.fateczl.engetec.senha;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,3 +45,4 @@ public class Senha {
 	
 	
 }
+*/

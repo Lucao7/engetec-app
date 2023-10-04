@@ -10,11 +10,7 @@ import br.com.fateczl.engetec.entity.Aluno;
 import br.com.fateczl.engetec.entity.Mensagem;
 import br.com.fateczl.engetec.entity.Usuario;
 import br.com.fateczl.engetec.entity.UsuarioRole;
-import br.com.fateczl.engetec.login.AlunoLogin;
 import br.com.fateczl.engetec.repository.AlunoRepository;
-import br.com.fateczl.engetec.repository.SenhaRepository;
-import br.com.fateczl.engetec.senha.HashSenha;
-import br.com.fateczl.engetec.senha.Senha;
 
 @Service
 public class AlunoService {
@@ -22,9 +18,9 @@ public class AlunoService {
 	@Autowired
 	private Mensagem mensagem;
 	
-	@Autowired
-	private HashSenha hashSenha;
-	
+//	@Autowired
+//	private HashSenha hashSenha;
+//	
 	@Autowired
 	private AlunoRepository alunoRepository;
 	

@@ -23,8 +23,8 @@ public class Usuario implements UserDetails{
 	private String email;
 	@Column(nullable = false)
 	private String nome;
-	@Column(nullable = false)
-	private UsuarioRole role;
+//	@Column(nullable = false)
+//	private UsuarioRole role;
 	@Column(nullable = false)
 	private String hashedSenha;
 	@Column(nullable = false)
@@ -39,7 +39,7 @@ public class Usuario implements UserDetails{
 	public Usuario(String email, String nome, UsuarioRole role) {
 		this.email = email;
 		this.nome = nome;
-		this.role = role;
+//		this.role = role;
 	}
 
 	public Long getId() {
@@ -62,13 +62,13 @@ public class Usuario implements UserDetails{
 		this.nome = nome;
 	}
 
-	public UsuarioRole getUsuarioRole() {
-		return role;
-	}
-
-	public void seteTipoUsuario(UsuarioRole role) {
-		this.role = role;
-	}
+//	public UsuarioRole getUsuarioRole() {
+//		return role;
+//	}
+//
+//	public void seteTipoUsuario(UsuarioRole role) {
+//		this.role = role;
+//	}
 	
 	public String getHashSenha() {
 		return hashedSenha;
@@ -86,7 +86,7 @@ public class Usuario implements UserDetails{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		if(this.role == UsuarioRole.ALUNO) return List.of(new SimpleGrantedAuthority("ROLE_ALUNO"));
+//		if(this.role == UsuarioRole.ALUNO) return List.of(new SimpleGrantedAuthority("ROLE_ALUNO"));
 		return null;
 	}
 
