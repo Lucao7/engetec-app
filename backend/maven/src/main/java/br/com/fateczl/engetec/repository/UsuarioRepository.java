@@ -1,6 +1,7 @@
 package br.com.fateczl.engetec.repository;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
 import br.com.fateczl.engetec.entity.Aluno;
@@ -12,6 +13,7 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long>{
 	int countByEmail(String email);
 	
 	Usuario findByEmail(String email);
-
+	
+	UserDetails findByLogin(String login);
 	
 }

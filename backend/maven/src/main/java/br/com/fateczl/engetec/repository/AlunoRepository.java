@@ -3,9 +3,11 @@ package br.com.fateczl.engetec.repository;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import br.com.fateczl.engetec.entity.Aluno;
 
+@Repository
 public interface AlunoRepository extends CrudRepository<Aluno, Long>{
 
 	List<Aluno> findAll();
