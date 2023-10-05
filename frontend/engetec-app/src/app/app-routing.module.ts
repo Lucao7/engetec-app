@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'dashboard', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
   { path: 'novo-artigo', loadChildren: () => import('./pages/artigo/artigo.module').then(m => m.ArtigoModule) },
   { path: 'atribuir', loadChildren: () => import('./pages/atribuicao/atribuicao.module').then(m => m.AtribuicaoModule) },
-  { path: 'avaliar', loadChildren: () => import('./pages/avaliacao/avaliacao.module').then(m => m.AvaliacaoModule) }
+  { path: 'avaliar', loadChildren: () => import('./pages/avaliacao/avaliacao.module').then(m => m.AvaliacaoModule) },
+  { path: 'perfil', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) }
 ];
 
 @NgModule({
