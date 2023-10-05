@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Excluir Conta</h1>
+<div mat-dialog-content>
+  Você realmente deseja excluir sua conta? <br>
+  Essa ação é <strong>irrevesível</strong>!
+</div>
+<div mat-dialog-actions class="justify-content-between">
+  <button mat-button mat-dialog-close cdkFocusInitial>Cancelar</button>
+  <button mat-button color="warn" (click)="deleteAccount()">Ok</button>
+</div>
