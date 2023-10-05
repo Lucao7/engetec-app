@@ -12,17 +12,8 @@ public class HashSenha {
 	
 	private static final int SALT_LENGTH = 16;
 	
-	//uma camada de segurança para a senha enviada pelo usuário
-	public static Senha tratamentoSenha(String senha) {
-		byte[] salt = new byte[16];
-		salt = generateSalt();
-		String hashedSenha = hashPassword(senha, salt);
-		Senha objSenha = new Senha(hashedSenha, salt);
-		return objSenha;
-	}
-	
 	// Gere um salt aleatório
-    private static byte[] generateSalt() {
+    public static byte[] generateSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[SALT_LENGTH];
         random.nextBytes(salt);
@@ -30,7 +21,7 @@ public class HashSenha {
     }
     
     // Crie um hash SHA-256 para a senha com o salt fornecido
-	private static String hashPassword(String password, byte[] salt) {
+	public static String hashPassword(String password, byte[] salt) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             digest.update(salt);

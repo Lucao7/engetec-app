@@ -9,11 +9,8 @@ import br.com.fateczl.engetec.dto.AlunoDTO;
 import br.com.fateczl.engetec.entity.Aluno;
 import br.com.fateczl.engetec.entity.Mensagem;
 import br.com.fateczl.engetec.entity.Usuario;
-import br.com.fateczl.engetec.login.AlunoLogin;
+import br.com.fateczl.engetec.entity.UsuarioRole;
 import br.com.fateczl.engetec.repository.AlunoRepository;
-import br.com.fateczl.engetec.repository.SenhaRepository;
-import br.com.fateczl.engetec.senha.HashSenha;
-import br.com.fateczl.engetec.senha.Senha;
 
 @Service
 public class AlunoService {
@@ -21,9 +18,9 @@ public class AlunoService {
 	@Autowired
 	private Mensagem mensagem;
 	
-	@Autowired
-	private HashSenha hashSenha;
-	
+//	@Autowired
+//	private HashSenha hashSenha;
+//	
 	@Autowired
 	private AlunoRepository alunoRepository;
 	
@@ -164,7 +161,7 @@ public class AlunoService {
 	}
 		
 	private Usuario alunoDtoToUsuario(AlunoDTO alunoDTO) {
-		Usuario usuario = new Usuario(alunoDTO.getEmail(), alunoDTO.getNome());
+		Usuario usuario = new Usuario(alunoDTO.getEmail(), alunoDTO.getNome(), UsuarioRole.ALUNO);
 		return usuario;
 	}
 	// para o put

@@ -3,28 +3,25 @@ package br.com.fateczl.engetec.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.fateczl.engetec.dto.AlunoDTO;
-import br.com.fateczl.engetec.entity.Aluno;
 import br.com.fateczl.engetec.entity.Mensagem;
 import br.com.fateczl.engetec.entity.Usuario;
-import br.com.fateczl.engetec.repository.SenhaRepository;
+//import br.com.fateczl.engetec.repository.SenhaRepository;
 import br.com.fateczl.engetec.repository.UsuarioRepository;
 import br.com.fateczl.engetec.senha.HashSenha;
-import br.com.fateczl.engetec.senha.Senha;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements UserDetailsService{
 
 	@Autowired
 	private Mensagem mensagem;
-	
-	@Autowired
-	private HashSenha hashSenha;
-	
-	@Autowired
-	private SenhaRepository senhaRepository;
+		
+//	@Autowired
+//	private SenhaRepository senhaRepository;
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
@@ -35,8 +32,8 @@ public class UsuarioService {
 			return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
 		} else {
 			Usuario usuario = usuarioRepository.findByEmail(email);
-			if(!HashSenha.verifyPassword(senha, usuario.getSenha().getHashSenha(), 
-					usuario.getSenha().getSalt())){
+			if(!HashSenha.verifyPassword(senha, usuario.getHashSenha(), 
+					usuario.getSalt())){
 				mensagem.setMensagem("senha incorreta");
 				return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
 			} else {
@@ -47,18 +44,25 @@ public class UsuarioService {
 	}
 	
 	//Método para cadastrar alunos 
-	public Usuario cadastrar(Usuario usuario, String senha) {
-		Senha objSenha = hashSenha.tratamentoSenha(senha);
-		Senha senhaSalva =senhaRepository.save(objSenha);
-		usuario.setSenha(senhaSalva);
+	public Usuario cadastrar(Usuario usuario, String senhaSemCiptografia) {
+		byte[] salt = new byte[16];
+		salt = HashSenha.generateSalt();
+		usuario.setSalt(salt);
+		usuario.setHashSenha(HashSenha.hashPassword(senhaSemCiptografia, salt));
 		return usuarioRepository.save(usuario);
 	}
 	
-	private Senha salvaSenha(Senha senha) {
-		return senhaRepository.save(senha);
-	}
+//	private Senha salvaSenha(Senha senha) {
+//		return senhaRepository.save(senha);
+//	}
 	
 	public int countByEmail(String email) {
 		return usuarioRepository.countByEmail(email);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return usuarioRepository.findByLogin(username);
 	}
 }

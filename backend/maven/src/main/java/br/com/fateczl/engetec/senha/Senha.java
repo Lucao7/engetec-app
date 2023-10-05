@@ -1,4 +1,4 @@
-package br.com.fateczl.engetec.senha;
+/*package br.com.fateczl.engetec.senha;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,10 +11,7 @@ public class Senha {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(nullable = false)
-	private String hashedSenha;
-	@Column(nullable = false)
-	private byte[] salt;
+
 //	@OneToOne(mappedBy = "senha")
 //	private Aluno aluno;
 	
@@ -44,18 +41,8 @@ public class Senha {
 //		this.aluno = aluno;
 //	}
 
-	public String getHashSenha() {
-		return hashedSenha;
-	}
-	public void setHashSenha(String hashedSenha) {
-		this.hashedSenha = hashedSenha;
-	}
-	public byte[] getSalt() {
-		return salt;
-	}
-	public void setSalt(byte[] salt) {
-		this.salt = salt;
-	}
+
 	
 	
 }
+*/

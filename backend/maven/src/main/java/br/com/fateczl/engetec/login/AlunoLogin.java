@@ -1,6 +1,6 @@
 package br.com.fateczl.engetec.login;
 
-import br.com.fateczl.engetec.senha.Senha;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -15,8 +15,7 @@ public class AlunoLogin {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AlunoLogin(@NotNull(message = "Informe um RA válido") Long ra,
-			@NotBlank(message = "Informe uma senha válida") String senha) {
+	public AlunoLogin(Long ra, String senha) {
 		super();
 		this.ra = ra;
 		this.senha = senha;

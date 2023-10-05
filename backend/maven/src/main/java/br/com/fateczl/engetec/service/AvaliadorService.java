@@ -1,20 +1,11 @@
 package br.com.fateczl.engetec.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import br.com.fateczl.engetec.dto.AlunoDTO;
-import br.com.fateczl.engetec.dto.AvaliadorDTO;
-import br.com.fateczl.engetec.entity.Aluno;
-import br.com.fateczl.engetec.entity.Avaliador;
 import br.com.fateczl.engetec.entity.Mensagem;
-import br.com.fateczl.engetec.repository.AlunoRepository;
 import br.com.fateczl.engetec.repository.AvaliadorRepository;
-import br.com.fateczl.engetec.repository.SenhaRepository;
 import br.com.fateczl.engetec.senha.HashSenha;
-import br.com.fateczl.engetec.senha.Senha;
 
 @Service
 public class AvaliadorService {
@@ -28,8 +19,8 @@ public class AvaliadorService {
 	@Autowired
 	private HashSenha hashSenha;
 	
-	@Autowired
-	private SenhaRepository senhaRepository;
+//	@Autowired
+//	private SenhaRepository senhaRepository;
 	
 	@Autowired
 	private AlunoService alunoService;

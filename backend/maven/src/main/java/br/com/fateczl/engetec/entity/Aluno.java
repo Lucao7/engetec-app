@@ -2,7 +2,6 @@ package br.com.fateczl.engetec.entity;
 
 import java.util.List;
 
-import br.com.fateczl.engetec.senha.Senha;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
