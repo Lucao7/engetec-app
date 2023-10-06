@@ -15,7 +15,7 @@ import br.com.fateczl.engetec.repository.UsuarioRepository;
 import br.com.fateczl.engetec.senha.HashSenha;
 
 @Service
-public class UsuarioService implements UserDetailsService{
+public class UsuarioService {
 
 	@Autowired
 	private Mensagem mensagem;
@@ -59,10 +59,10 @@ public class UsuarioService implements UserDetailsService{
 	public int countByEmail(String email) {
 		return usuarioRepository.countByEmail(email);
 	}
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return usuarioRepository.findByLogin(username);
-	}
+//
+//	@Override
+//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//		// TODO Auto-generated method stub
+//		return usuarioRepository.findByLogin(username);
+//	}
 }
