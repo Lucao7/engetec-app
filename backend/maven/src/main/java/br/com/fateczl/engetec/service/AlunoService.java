@@ -46,15 +46,15 @@ public class AlunoService {
 	
 	//Método para cadastrar alunos 
 	public ResponseEntity<?> cadastrar(AlunoDTO alunoDTO) {
-		if(usuarioService.countByEmail(alunoDTO.getEmail())!=0){
+		if(usuarioService.countByEmail(alunoDTO.email())!=0){
 			mensagem.setMensagem("email já existe");
 			return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
-		} else if(alunoRepository.countByRa(alunoDTO.getRa())!=0){
+		} else if(alunoRepository.countByRa(alunoDTO.ra())!=0){
 			mensagem.setMensagem("RA já existe");
 			return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
 		} else {
 			Usuario usuario = alunoDtoToUsuario(alunoDTO);
-			Usuario usuarioSalvo = usuarioService.cadastrar(usuario, alunoDTO.getSenha());
+			Usuario usuarioSalvo = usuarioService.cadastrar(usuario, alunoDTO.password());
 			Aluno aluno = alunoDtoToAluno(alunoDTO);
 			aluno.setUsuario(usuarioSalvo);
 			return new ResponseEntity<>(alunoRepository.save(aluno), HttpStatus.CREATED);
@@ -156,14 +156,14 @@ public class AlunoService {
 	
 	// para o post
 	private Aluno alunoDtoToAluno(AlunoDTO alunoDTO) {
-		Aluno aluno = new Aluno(alunoDTO.getRa());
+		Aluno aluno = new Aluno(alunoDTO.ra());
 		return aluno;
 	}
 		
 	private Usuario alunoDtoToUsuario(AlunoDTO alunoDTO) {
 //		String nomeRole = "ROLE_ALUNO";
 //		Role role = new Role(nomeRole);
-		Usuario usuario = new Usuario(alunoDTO.getEmail(), alunoDTO.getNome() /*role*/);
+		Usuario usuario = new Usuario(alunoDTO.email(), alunoDTO.nome() /*role*/);
 		return usuario;
 	}
 	// para o put

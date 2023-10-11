@@ -18,27 +18,27 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class JWTAutenticarFilter extends UsernamePasswordAuthenticationFilter{
-	
+
 	private final AuthenticationManager authenticationManager;
 	
 	public JWTAutenticarFilter(AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;
 	}
 
-	@Override
-	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-			throws AuthenticationException {
-			try {
-				Usuario usuario = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
-				return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-						usuario.getEmail(), usuario.getHashSenha(), new ArrayList<>()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				throw new RuntimeException("Falha ao autenticar usuário", e);
-			}
-
-	
-	}
+//	@Override
+//	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
+//			throws AuthenticationException {
+//			try {
+//				Usuario usuario = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
+//				return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+//						usuario.getEmail(), usuario.getHashSenha(), new ArrayList<>()));
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				throw new RuntimeException("Falha ao autenticar usuário", e);
+//			}
+//
+//	
+//	}
 	
 //	@Override
 //    protected void successfulAuthentication(HttpServletRequest request,
@@ -56,5 +56,24 @@ public class JWTAutenticarFilter extends UsernamePasswordAuthenticationFilter{
 //        response.getWriter().write(token);
 //        response.getWriter().flush();
 //    }
-	
+
+	@Override
+    public Authentication attemptAuthentication(HttpServletRequest request,
+                                                HttpServletResponse response) throws AuthenticationException {
+        try {
+            Usuario usuario = new ObjectMapper()
+                    .readValue(request.getInputStream(), Usuario.class);
+
+            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                    usuario.getEmail(),
+                    usuario.getPassword(),
+                    new ArrayList<>()
+            ));
+
+        } catch (IOException e) {
+            throw new RuntimeException("Falha ao autenticar usuario", e);
+        }
+
+    }
+
 }

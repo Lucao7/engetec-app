@@ -18,4 +18,6 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long>{
 	
 	//UserDetails findByLogin(String email);
 	UserDetails findByEmail(String email);
+//	Optional<Usuario> findByEmail(String email);
+		
 }

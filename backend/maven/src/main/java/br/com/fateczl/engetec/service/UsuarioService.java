@@ -1,16 +1,8 @@
 package br.com.fateczl.engetec.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.fateczl.engetec.data.DetalheUsuarioData;
 import br.com.fateczl.engetec.entity.Mensagem;
 //import br.com.fateczl.engetec.entity.Role;
 import br.com.fateczl.engetec.entity.Usuario;
@@ -51,8 +43,6 @@ public class UsuarioService {
 	public Usuario cadastrar(Usuario usuario, String senhaSemCiptografia) {
 		byte[] salt = new byte[16];
 		salt = HashSenha.generateSalt();
-		usuario.setSalt(salt);
-		usuario.setHashSenha(HashSenha.hashPassword(senhaSemCiptografia, salt));
 		return usuarioRepository.save(usuario);
 	}
 	
@@ -65,4 +55,10 @@ public class UsuarioService {
 	}
 
 //
+//
+//	@Override
+//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//		// TODO Auto-generated method stub
+//		return usuarioRepository.findByLogin(username);
+//	}
 }

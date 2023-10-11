@@ -49,7 +49,6 @@ public class Usuario implements UserDetails{
 	public Usuario(String email, String nome) {
 		this.email = email;
 		this.nome = nome;
-//		this.role = role;
 	}
 
 	public Usuario(String email, String encryptedPassword, UsuarioRole role) {
@@ -77,14 +76,6 @@ public class Usuario implements UserDetails{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-//	public UsuarioRole getUsuarioRole() {
-//		return role;
-//	}
-//
-//	public void seteTipoUsuario(UsuarioRole role) {
-//		this.role = role;
-//	}
 	
 //	public String getHashSenha() {
 //		return hashedSenha;
@@ -111,7 +102,6 @@ public class Usuario implements UserDetails{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 
 
 	@Override
