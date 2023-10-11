@@ -1,16 +1,22 @@
 package br.com.fateczl.engetec.entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Usuario implements UserDetails{
@@ -25,21 +31,31 @@ public class Usuario implements UserDetails{
 	private String nome;
 //	@Column(nullable = false)
 //	private UsuarioRole role;
+//	@ManyToOne
+//	@JoinColumn(name = "role_nomeRole", nullable = false)
+	private UsuarioRole role;
+//	@Column(nullable = false)
+//	private String hashedSenha;
+//	@Column(nullable = false)
+//	private byte[] salt;
 	@Column(nullable = false)
-	private String hashedSenha;
-	@Column(nullable = false)
-	private byte[] salt;
+	private String password;
 	
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 	
-	public Usuario(String email, String nome, UsuarioRole role) {
+	public Usuario(String email, String nome) {
 		this.email = email;
 		this.nome = nome;
 //		this.role = role;
+	}
+
+	public Usuario(String email, String encryptedPassword, UsuarioRole role) {
+		this.email = email;
+		this.password = encryptedPassword;
+		this.role = role;
 	}
 
 	public Long getId() {
@@ -70,40 +86,56 @@ public class Usuario implements UserDetails{
 //		this.role = role;
 //	}
 	
-	public String getHashSenha() {
-		return hashedSenha;
+//	public String getHashSenha() {
+//		return hashedSenha;
+//	}
+//	public void setHashSenha(String hashedSenha) {
+//		this.hashedSenha = hashedSenha;
+//	}
+//	public byte[] getSalt() {
+//		return salt;
+//	}
+//	public void setSalt(byte[] salt) {
+//		this.salt = salt;
+//	}
+
+	public UsuarioRole getRole() {
+		return role;
 	}
-	public void setHashSenha(String hashedSenha) {
-		this.hashedSenha = hashedSenha;
+
+	public void setUsuarioRoles(UsuarioRole role) {
+		this.role = role;
 	}
-	public byte[] getSalt() {
-		return salt;
+	
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public void setSalt(byte[] salt) {
-		this.salt = salt;
-	}
+
 
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-//		if(this.role == UsuarioRole.ALUNO) return List.of(new SimpleGrantedAuthority("ROLE_ALUNO"));
-		return null;
+		if(this.role == UsuarioRole.ALUNO) {
+			return List.of(new SimpleGrantedAuthority("ROLE_ALUNO"));
+		} else if(this.role == UsuarioRole.AVALIADOR) {
+			return List.of(new SimpleGrantedAuthority("ROLE_AVALIADOR"));
+		}
+		
+		return new ArrayList<>();
 	}
-
-
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return hashedSenha;
-	}
-
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return email;
+		return getEmail();
 	}
-
+	
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return password;
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {
@@ -111,13 +143,11 @@ public class Usuario implements UserDetails{
 		return true;
 	}
 
-
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
 		return true;
 	}
-
 
 	@Override
 	public boolean isCredentialsNonExpired() {
@@ -125,11 +155,11 @@ public class Usuario implements UserDetails{
 		return true;
 	}
 
-
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
 	}
+
 
 }

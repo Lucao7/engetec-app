@@ -1,5 +1,7 @@
 package br.com.fateczl.engetec.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,14 +10,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import br.com.fateczl.engetec.data.DetalheUsuarioData;
 import br.com.fateczl.engetec.entity.Mensagem;
+//import br.com.fateczl.engetec.entity.Role;
 import br.com.fateczl.engetec.entity.Usuario;
 //import br.com.fateczl.engetec.repository.SenhaRepository;
 import br.com.fateczl.engetec.repository.UsuarioRepository;
 import br.com.fateczl.engetec.senha.HashSenha;
 
 @Service
-public class UsuarioService implements UserDetailsService{
+public class UsuarioService {
 
 	@Autowired
 	private Mensagem mensagem;
@@ -26,22 +30,22 @@ public class UsuarioService implements UserDetailsService{
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	public ResponseEntity<?> logar(String email, String senha){
-		if(usuarioRepository.countByEmail(email)==0) {
-			mensagem.setMensagem("email não existe");
-			return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
-		} else {
-			Usuario usuario = usuarioRepository.findByEmail(email);
-			if(!HashSenha.verifyPassword(senha, usuario.getHashSenha(), 
-					usuario.getSalt())){
-				mensagem.setMensagem("senha incorreta");
-				return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
-			} else {
-				mensagem.setMensagem("logado");
-				return new ResponseEntity<>(mensagem, HttpStatus.OK);
-			}
-		}
-	}
+//	public ResponseEntity<?> logar(String email, String senha){
+//		if(usuarioRepository.countByEmail(email)==0) {
+//			mensagem.setMensagem("email não existe");
+//			return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+//		} else {
+//			Usuario usuario = usuarioRepository.findByEmail(email);
+//			if(!HashSenha.verifyPassword(senha, usuario.getHashSenha(), 
+//					usuario.getSalt())){
+//				mensagem.setMensagem("senha incorreta");
+//				return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+//			} else {
+//				mensagem.setMensagem("logado");
+//				return new ResponseEntity<>(mensagem, HttpStatus.OK);
+//			}
+//		}
+//	}
 	
 	//Método para cadastrar alunos 
 	public Usuario cadastrar(Usuario usuario, String senhaSemCiptografia) {
@@ -60,9 +64,5 @@ public class UsuarioService implements UserDetailsService{
 		return usuarioRepository.countByEmail(email);
 	}
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return usuarioRepository.findByLogin(username);
-	}
+//
 }

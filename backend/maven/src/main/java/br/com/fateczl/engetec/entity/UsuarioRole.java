@@ -1,19 +1,17 @@
 package br.com.fateczl.engetec.entity;
 
 public enum UsuarioRole {
-
-	ALUNO("aluno"), 
-	AVALIADOR("avaliador"), 
-	COMITE("comite");
+	ALUNO("aluno"),
+	AVALIADOR("avaliador");
 	
 	private String role;
 	
-	private UsuarioRole(String role) {
-		// TODO Auto-generated constructor stub
+	UsuarioRole(String role) {
 		this.role = role;
 	}
 	
 	public String getRole() {
 		return role;
 	}
+
 }

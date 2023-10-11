@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import br.com.fateczl.engetec.dto.AlunoDTO;
 import br.com.fateczl.engetec.entity.Aluno;
 import br.com.fateczl.engetec.entity.Mensagem;
+//import br.com.fateczl.engetec.entity.Role;
 import br.com.fateczl.engetec.entity.Usuario;
-import br.com.fateczl.engetec.entity.UsuarioRole;
 import br.com.fateczl.engetec.repository.AlunoRepository;
 
 @Service
@@ -161,7 +161,9 @@ public class AlunoService {
 	}
 		
 	private Usuario alunoDtoToUsuario(AlunoDTO alunoDTO) {
-		Usuario usuario = new Usuario(alunoDTO.getEmail(), alunoDTO.getNome(), UsuarioRole.ALUNO);
+//		String nomeRole = "ROLE_ALUNO";
+//		Role role = new Role(nomeRole);
+		Usuario usuario = new Usuario(alunoDTO.getEmail(), alunoDTO.getNome() /*role*/);
 		return usuario;
 	}
 	// para o put

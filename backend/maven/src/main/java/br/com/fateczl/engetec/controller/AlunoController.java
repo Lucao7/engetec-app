@@ -3,6 +3,7 @@ package br.com.fateczl.engetec.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,12 +16,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.fateczl.engetec.dto.AlunoDTO;
 import br.com.fateczl.engetec.entity.Disco;
+import br.com.fateczl.engetec.entity.Usuario;
 import br.com.fateczl.engetec.repository.AlunoRepository;
+import br.com.fateczl.engetec.repository.UsuarioRepository;
 import br.com.fateczl.engetec.service.AlunoService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/aluno")
+@RequestMapping("/aluno")
 public class AlunoController {
 	
 	@Autowired
@@ -28,6 +31,9 @@ public class AlunoController {
 	
 	@Autowired
 	private AlunoRepository alunoRepository;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 	
 	@Autowired
 	private AlunoService alunoService;
@@ -82,9 +88,16 @@ public class AlunoController {
 //		return alunoRepository.findByNomeEndsWith(termo);
 //	}
 	
-	@PostMapping(path = "")
-	public ResponseEntity<?> cadastrar(@Valid @RequestBody AlunoDTO alunoDTO) {
-		return alunoService.cadastrar(alunoDTO);
+	@PostMapping
+	public ResponseEntity<?> cadastrar(@Valid @RequestBody AlunoDTO data) {
+		if(this.usuarioRepository.findByEmail(data.email()) != null) return ResponseEntity.badRequest().build();
+		
+		String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
+		
+		Usuario usuario = new Usuario(data.email(), encryptedPassword, data.role());
+//		
+//		this.usuarioRepository
+		return alunoService.cadastrar(data);
 	}
 	
 	@PostMapping(path = "/addArtigo")
