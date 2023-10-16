@@ -3,7 +3,6 @@ package br.com.fateczl.engetec.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.fateczl.engetec.dto.AlunoDTO;
 import br.com.fateczl.engetec.entity.Disco;
-import br.com.fateczl.engetec.entity.Usuario;
 import br.com.fateczl.engetec.repository.AlunoRepository;
 import br.com.fateczl.engetec.repository.UsuarioRepository;
 import br.com.fateczl.engetec.service.AlunoService;

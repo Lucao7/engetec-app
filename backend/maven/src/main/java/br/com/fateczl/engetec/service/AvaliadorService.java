@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.fateczl.engetec.entity.Mensagem;
 import br.com.fateczl.engetec.repository.AvaliadorRepository;
-import br.com.fateczl.engetec.senha.HashSenha;
 
 @Service
 public class AvaliadorService {
@@ -16,14 +15,9 @@ public class AvaliadorService {
 	@Autowired
 	private AvaliadorRepository avaliadorRepository;
 	
-	@Autowired
-	private HashSenha hashSenha;
-	
 //	@Autowired
 //	private SenhaRepository senhaRepository;
 	
-	@Autowired
-	private AlunoService alunoService;
 	
 //	public ResponseEntity<?> cadastrar(AvaliadorDTO avaliadorDTO) {
 //		Senha objSenha = hashSenha.tratamentoSenha(avaliadorDTO.getSenha());

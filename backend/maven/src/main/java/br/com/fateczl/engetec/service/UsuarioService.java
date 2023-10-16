@@ -9,7 +9,6 @@ import br.com.fateczl.engetec.entity.Mensagem;
 import br.com.fateczl.engetec.entity.Usuario;
 //import br.com.fateczl.engetec.repository.SenhaRepository;
 import br.com.fateczl.engetec.repository.UsuarioRepository;
-import br.com.fateczl.engetec.senha.HashSenha;
 
 @Service
 public class UsuarioService {
