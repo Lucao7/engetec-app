@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fateczl.engetec.dto.AuthenticationDTO;
+import br.com.fateczl.engetec.dto.LoginResponseDTO;
+import br.com.fateczl.engetec.entity.Usuario;
+import br.com.fateczl.engetec.security.TokenService;
 import jakarta.validation.Valid;
 
 @RestController
@@ -19,6 +22,9 @@ public class AuthenticationController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
+	@Autowired
+	private TokenService tokenService;
+	
 //	@Autowired
 //	UsuarioService usuarioService;
 	
@@ -27,7 +33,9 @@ public class AuthenticationController {
 		var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
 		var auth = this.authenticationManager.authenticate(usernamePassword);
 		
-		return ResponseEntity.ok().build();
+		var token = tokenService.generateToken((Usuario) auth.getPrincipal());
+		
+		return ResponseEntity.ok(new LoginResponseDTO(token));
 		
 	}
 	
