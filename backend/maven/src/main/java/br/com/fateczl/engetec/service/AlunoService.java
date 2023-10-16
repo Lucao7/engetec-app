@@ -3,6 +3,7 @@ package br.com.fateczl.engetec.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.fateczl.engetec.dto.AlunoDTO;
@@ -46,19 +47,21 @@ public class AlunoService {
 	
 	//Método para cadastrar alunos 
 	public ResponseEntity<?> cadastrar(AlunoDTO alunoDTO) {
-		if(usuarioService.countByEmail(alunoDTO.email())!=0){
+		if(this.usuarioService.findByEmail(alunoDTO.email()) != null) {
 			mensagem.setMensagem("email já existe");
 			return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
 		} else if(alunoRepository.countByRa(alunoDTO.ra())!=0){
 			mensagem.setMensagem("RA já existe");
 			return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
-		} else {
-			Usuario usuario = alunoDtoToUsuario(alunoDTO);
-			Usuario usuarioSalvo = usuarioService.cadastrar(usuario, alunoDTO.password());
-			Aluno aluno = alunoDtoToAluno(alunoDTO);
-			aluno.setUsuario(usuarioSalvo);
-			return new ResponseEntity<>(alunoRepository.save(aluno), HttpStatus.CREATED);
 		}
+		
+		String encryptedPassword = new BCryptPasswordEncoder().encode(alunoDTO.password());
+		
+		Usuario usuario = new Usuario(alunoDTO.email(), alunoDTO.nome(), encryptedPassword, alunoDTO.role());
+		Usuario usuarioSalvo = usuarioService.cadastrar(usuario);
+		
+		Aluno aluno = new Aluno(alunoDTO.ra(), usuarioSalvo);
+		return new ResponseEntity<>(alunoRepository.save(aluno), HttpStatus.CREATED);
 	}
 	
 	//Método para selecionar alunos

@@ -90,11 +90,7 @@ public class AlunoController {
 	
 	@PostMapping
 	public ResponseEntity<?> cadastrar(@Valid @RequestBody AlunoDTO data) {
-		if(this.usuarioRepository.findByEmail(data.email()) != null) return ResponseEntity.badRequest().build();
-		
-		String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-		
-		Usuario usuario = new Usuario(data.email(), encryptedPassword, data.role());
+
 //		
 //		this.usuarioRepository
 		return alunoService.cadastrar(data);

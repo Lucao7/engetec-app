@@ -1,6 +1,7 @@
 package br.com.fateczl.engetec.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import br.com.fateczl.engetec.entity.Mensagem;
@@ -40,9 +41,7 @@ public class UsuarioService {
 //	}
 	
 	//Método para cadastrar alunos 
-	public Usuario cadastrar(Usuario usuario, String senhaSemCiptografia) {
-		byte[] salt = new byte[16];
-		salt = HashSenha.generateSalt();
+	public Usuario cadastrar(Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}
 	
@@ -54,6 +53,10 @@ public class UsuarioService {
 		return usuarioRepository.countByEmail(email);
 	}
 
+	public UserDetails findByEmail(String email) {
+		return usuarioRepository.findByEmail(email);
+	}
+	
 //
 //
 //	@Override
