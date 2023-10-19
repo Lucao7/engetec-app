@@ -1,5 +1,6 @@
 package br.com.fateczl.engetec.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -28,6 +29,7 @@ public class Aluno {
 	public Aluno(Long ra, Usuario usuario) {
 		this.ra = ra;
 		this.usuario = usuario;
+		this.artigos = new ArrayList<Artigo>();
 	}
 	
 	@Deprecated

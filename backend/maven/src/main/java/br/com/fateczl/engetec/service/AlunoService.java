@@ -11,6 +11,7 @@ import br.com.fateczl.engetec.entity.Aluno;
 import br.com.fateczl.engetec.entity.Mensagem;
 //import br.com.fateczl.engetec.entity.Role;
 import br.com.fateczl.engetec.entity.Usuario;
+import br.com.fateczl.engetec.entity.UsuarioRole;
 import br.com.fateczl.engetec.repository.AlunoRepository;
 
 @Service
@@ -57,7 +58,7 @@ public class AlunoService {
 		
 		String encryptedPassword = new BCryptPasswordEncoder().encode(alunoDTO.password());
 		
-		Usuario usuario = new Usuario(alunoDTO.email(), alunoDTO.nome(), encryptedPassword, alunoDTO.role());
+		Usuario usuario = new Usuario(alunoDTO.email(), alunoDTO.nome(), encryptedPassword, UsuarioRole.ALUNO);
 		Usuario usuarioSalvo = usuarioService.cadastrar(usuario);
 		
 		Aluno aluno = new Aluno(alunoDTO.ra(), usuarioSalvo);

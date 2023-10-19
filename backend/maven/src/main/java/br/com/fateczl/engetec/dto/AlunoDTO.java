@@ -1,9 +1,22 @@
 package br.com.fateczl.engetec.dto;
 
 import br.com.fateczl.engetec.entity.UsuarioRole;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
-public record AlunoDTO (Long ra, String email, String nome, String password, UsuarioRole role) {
-	
+public record AlunoDTO (
+		@Valid	@NotNull(message = "Informe um RA válido") 
+		@Positive(message = "Informe um RA válido") Long ra, 
+		@Valid @Email(message = "Informe um e-mail válido") String email, 
+		@Valid @NotBlank(message = "Informe um nome válido") String nome,
+		@Valid @NotBlank(message = "Informe uma senha válida") 
+		@Size(min = 6, message = "a senha deve conter no mínimo 6 caracteres") 
+		String password) 
+{
 }
 
 //public class AlunoDTO {
