@@ -12,6 +12,6 @@ export class AreaService {
   ) { }
 
   getAreas() {
-    return this.http.get(environment.apiUrl + 'areas');
+    return this.http.get(environment.areasUrl);
   }
 }

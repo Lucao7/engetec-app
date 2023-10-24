@@ -20,7 +20,7 @@ export class AvaliacaoService {
 
   postAvaliacao(idArtigo: number, avaliadorDocument: number, nota: number, razao: string): Observable<any> {
     return this.http.post(
-      environment.apiUrl + 'nova-avaliacao',
+      environment.avaliacaoUrl,
       {
         idArtigo,
         avaliadorDocument,
@@ -34,14 +34,14 @@ export class AvaliacaoService {
   }
 
   getAvaliacao(idAvaliacao: number) {
-    return this.http.get(environment.apiUrl + 'avaliacao/' + idAvaliacao);
+    return this.http.get(environment.avaliacaoUrl + `/${idAvaliacao}`);
   }
 
   deleteAvaliacao(idAvaliacao: number) {
-    return this.http.delete(environment.apiUrl + 'avaliacao/' + idAvaliacao);
+    return this.http.delete(environment.avaliacaoUrl + `/${idAvaliacao}`);
   }
 
   getAvaliacoes(idArtigo: number) {
-    return this.http.get(environment.apiUrl + 'avaliacoes/' + idArtigo);
+    return this.http.get(environment.avaliacaoUrl + `/${idArtigo}`);
   }
 }
