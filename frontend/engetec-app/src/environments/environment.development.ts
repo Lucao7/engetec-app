@@ -3,7 +3,7 @@ export const environment = {
   userUrl: 'usuario',
   alunoUrl: 'aluno',
   avaliadorUrl: 'avaliador',
-  authUrl: 'api/v1/usuario/login',
+  authUrl: 'auth/login',
   getDocumentUrl: 'user/document',
   areasUrl: 'areas',
   avaliacaoUrl: 'avaliacao',
