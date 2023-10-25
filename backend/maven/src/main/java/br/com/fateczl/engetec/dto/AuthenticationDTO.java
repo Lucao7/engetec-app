@@ -1,6 +1,6 @@
 package br.com.fateczl.engetec.dto;
 
-public record AuthenticationDTO(String login, String password) {
+public record AuthenticationDTO(String email, String password) {
 
 //	@NotBlank(message = "Informe um e-mail válido")
 //	@Email(message = "Informe um e-mail válido")
