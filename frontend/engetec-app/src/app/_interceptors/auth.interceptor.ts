@@ -10,6 +10,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../_services/auth/auth.service';
 import { StorageService } from '../_services/storage/storage.service';
 
@@ -17,6 +18,7 @@ import { StorageService } from '../_services/storage/storage.service';
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
+    private toast: ToastrService,
     private storageService: StorageService,
     private authService: AuthService,
   ) {}
@@ -32,9 +34,8 @@ export class AuthInterceptor implements HttpInterceptor {
       error => {
         if (error instanceof HttpErrorResponse) {
           if (error.status == 401) {
-            console.log("Token expirado / inválido!");
-            console.log("Deslogando usuário...");
-            this.authService.logout();
+            // this.toast.error("Usuário não autorizado","Negado")
+            console.log("Usuário não autorizado");
           }
         }
       })
