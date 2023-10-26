@@ -41,10 +41,12 @@ export class LoginComponent {
       .pipe(first())
       .subscribe(
         error => {
-          console.log("Login Error", error);
-          error.message.forEach((element: string | undefined) => {
-            this.toast.error(element, 'Login')
-          });
+          if(error) {
+            console.log("Login Error", error);
+            error.message.forEach((element: string | undefined) => {
+              this.toast.error(element, 'Login')
+            });
+          }
         });
   }
 }

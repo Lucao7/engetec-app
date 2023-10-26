@@ -30,15 +30,6 @@ public class SecurityConfig {
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http
-//            .authorizeHttpRequests(
-//            		(authz) -> authz
-//            		.requestMatchers("/aluno/registrar-se").permitAll()
-////            		.requestMatchers("/avaliador/resgistrar-se").permitAll()
-//            		.requestMatchers("/aluno/**").hasRole("ALUNO")
-//            		.requestMatchers("/avaliador/**").hasRole("PROFESSOR")
-//            		.anyRequest().authenticated()
-//            );
-            //.oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()));
 		.csrf(csrf -> csrf.disable())
         .cors(Customizer.withDefaults())
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -50,7 +41,6 @@ public class SecurityConfig {
         		.anyRequest().authenticated()
         		)
         .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-        .httpBasic(Customizer.withDefaults())
         .build();
     }
 	

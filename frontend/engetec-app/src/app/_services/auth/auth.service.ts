@@ -32,7 +32,7 @@ export class AuthService {
       environment.authUrl,
       {
         "email": email,
-        "senha": password,
+        "password": password,
       },
       httpOptions
     ).pipe(map(data => {
