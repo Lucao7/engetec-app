@@ -49,7 +49,7 @@ export class AuthService {
         "ra": document,
         "email": email,
         "nome": name,
-        "senha": password,
+        "password": password,
       },
       httpOptions
     );

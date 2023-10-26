@@ -61,10 +61,12 @@ export class RegisterComponent {
               .pipe(first())
                 .subscribe(
                   error => {
-                    console.log("Login Error", error);
-                    error.message.forEach((element: string | undefined) => {
-                      this.toast.error(element, 'Register')
-                    });
+                    if(error) {
+                      console.log("Login Error", error);
+                      error.message.forEach((element: string | undefined) => {
+                        this.toast.error(element, 'Register')
+                      });
+                    }
                   }
                 );
           },
