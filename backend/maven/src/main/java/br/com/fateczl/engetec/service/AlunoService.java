@@ -13,6 +13,7 @@ import br.com.fateczl.engetec.entity.Mensagem;
 import br.com.fateczl.engetec.entity.Usuario;
 import br.com.fateczl.engetec.entity.UsuarioRole;
 import br.com.fateczl.engetec.repository.AlunoRepository;
+import br.com.fateczl.engetec.valida.ValidaPassword;
 
 @Service
 public class AlunoService {
@@ -29,25 +30,11 @@ public class AlunoService {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-//	public ResponseEntity<?> logar(AlunoLogin alunoLogin){
-//		if(alunoRepository.countByRa(alunoLogin.getRa())==0) {
-//			mensagem.setMensagem("email não existe");
-//			return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
-//		} else {
-//			Aluno aluno = alunoRepository.findByRa(alunoLogin.getRa());
-//			if(!HashSenha.verifyPassword(alunoLogin.getSenha(), aluno.getSenha().getHashSenha(), 
-//					aluno.getSenha().getSalt())){
-//				mensagem.setMensagem("senha incorreta");
-//				return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
-//			} else {
-//				mensagem.setMensagem("logado");
-//				return new ResponseEntity<>(mensagem, HttpStatus.OK);
-//			}
-//		}
-//	}
-	
 	//Método para cadastrar alunos 
 	public ResponseEntity<?> cadastrar(AlunoDTO alunoDTO) {
+//		if (!ValidaPassword.validarTamanho(alunoDTO.password())) 
+//			return new ResponseEntity<>
+//		("A senha deve ter no mínimo 6 caracteres", HttpStatus.BAD_REQUEST);
 		if(this.usuarioService.findByEmail(alunoDTO.email()) != null) {
 			mensagem.setMensagem("email já existe");
 			return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);

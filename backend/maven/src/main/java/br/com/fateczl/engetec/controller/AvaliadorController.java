@@ -7,19 +7,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fateczl.engetec.dto.AlunoDTO;
 import br.com.fateczl.engetec.dto.AvaliadorDTO;
 import br.com.fateczl.engetec.service.AvaliadorService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/avaliador")
+@RequestMapping("/avaliador")
 public class AvaliadorController {
 	
 	@Autowired
 	private AvaliadorService avaliadorService;
 	
-//	@PostMapping(path="")
-//	public ResponseEntity<?> cadastrar(@Valid @RequestBody AvaliadorDTO avaliadorDTO){
-//		return avaliadorService.cadastrar(avaliadorDTO);
-//	}
+	@PostMapping(path="")
+	public ResponseEntity<?> cadastrar(@Valid @RequestBody AvaliadorDTO data){
+		return avaliadorService.cadastrar(data);
+	}
 }

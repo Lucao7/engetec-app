@@ -1,5 +1,6 @@
 package br.com.fateczl.engetec.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -27,10 +28,11 @@ public class Avaliador {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Avaliador(Long matricula, List<Avaliacao> avaliacoes, List<Area> areas) {
+	public Avaliador(Long matricula, Usuario usuario) {
 		this.matricula = matricula;
-		this.avaliacoes = avaliacoes;
-		this.areas = areas;
+		this.usuario = usuario;
+		this.areas = new ArrayList<Area>();
+		this.avaliacoes = new ArrayList<Avaliacao>();
 	}
 
 	public Long getMatricula() {

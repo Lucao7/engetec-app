@@ -37,6 +37,7 @@ public class SecurityConfig {
         		.requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
         		.requestMatchers(HttpMethod.POST, "/aluno").permitAll()
         		.requestMatchers(HttpMethod.GET, "/aluno").permitAll()
+        		.requestMatchers(HttpMethod.POST, "/avaliador").permitAll()
         		.requestMatchers(HttpMethod.DELETE, "/aluno").hasRole("ALUNO")
         		.anyRequest().authenticated()
         		)
