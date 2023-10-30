@@ -43,16 +43,29 @@ export class AuthService {
   }
 
   register(name: string, email: string, documentType: string, document: number, password: string): Observable<any> {
-    return this.http.post(
-      environment.alunoUrl,
-      {
-        "ra": document,
-        "email": email,
-        "nome": name,
-        "password": password,
-      },
-      httpOptions
-    );
+    if(documentType === "ra") {
+      return this.http.post(
+        environment.alunoUrl,
+        {
+          "ra": document,
+          "email": email,
+          "nome": name,
+          "password": password,
+        },
+        httpOptions
+      );
+    } else {
+      return this.http.post(
+        environment.avaliadorUrl,
+        {
+          "matricula": document,
+          "email": email,
+          "nome": name,
+          "password": password,
+        },
+        httpOptions
+      );
+    }
   }
 
   logout()/*: Observable<any>*/ {
