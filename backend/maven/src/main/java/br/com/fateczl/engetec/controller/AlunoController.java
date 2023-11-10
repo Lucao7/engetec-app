@@ -119,10 +119,10 @@ public class AlunoController {
 //		return alunoService.ed
 //	}
 	
-	@DeleteMapping(path = "/{ra}")
-	public ResponseEntity<?> remover(@PathVariable Long ra) {
-		return alunoService.remover(ra);
-	}
+//	@DeleteMapping(path = "/{ra}")
+//	public ResponseEntity<?> remover(@PathVariable Long ra) {
+//		return alunoService.remover(ra);
+//	}
 
 	@GetMapping("/status")
 	public ResponseEntity<?> status() {

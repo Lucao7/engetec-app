@@ -38,6 +38,9 @@ public class SecurityConfig {
         		.requestMatchers(HttpMethod.POST, "/aluno").permitAll()
         		.requestMatchers(HttpMethod.GET, "/aluno").permitAll()
         		.requestMatchers(HttpMethod.POST, "/avaliador").permitAll()
+        		.requestMatchers("/swagger-ui/**", "/v3/api-docs/**", 
+        				"/swagger-ui.html", "/swagger-ui/**", 
+        				"/swagger-resources/**", "/webjars/**").permitAll()		
         		.requestMatchers(HttpMethod.DELETE, "/aluno").hasRole("ALUNO")
         		.anyRequest().authenticated()
         		)

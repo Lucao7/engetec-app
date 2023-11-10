@@ -1,9 +1,13 @@
 package br.com.fateczl.engetec.service;
 
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import br.com.fateczl.engetec.entity.Aluno;
 import br.com.fateczl.engetec.entity.Mensagem;
 //import br.com.fateczl.engetec.entity.Role;
 import br.com.fateczl.engetec.entity.Usuario;
@@ -18,6 +22,12 @@ public class UsuarioService {
 		
 //	@Autowired
 //	private SenhaRepository senhaRepository;
+	
+	@Autowired
+	private AlunoUtilService alunoutilService;
+	
+	@Autowired
+	private AvaliadorService avaliadorService;
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
@@ -40,9 +50,9 @@ public class UsuarioService {
 //	}
 	
 	//Método para cadastrar alunos 
-	public Usuario cadastrar(Usuario usuario) {
-		return usuarioRepository.save(usuario);
-	}
+//	public Usuario cadastrar(Usuario usuario) {
+//		return usuarioRepository.save(usuario);
+//	}
 	
 //	private Senha salvaSenha(Senha senha) {
 //		return senhaRepository.save(senha);
@@ -56,6 +66,27 @@ public class UsuarioService {
 		return usuarioRepository.findByEmail(email);
 	}
 	
+//	public ResponseEntity<?> remover(Long id) {
+//		if(usuarioRepository.countById(id) == 0) {
+//			mensagem.setMensagem("O ID informado não existe.");
+//			return new ResponseEntity<>(mensagem, HttpStatus.NOT_FOUND);
+//		}else {
+//			Optional<Usuario> usuario = usuarioRepository.findById(id);
+//			usuarioRepository.deleteById(id);
+//			switch (usuario.get().getRole()) { 
+//				case ALUNO:
+//					Aluno aluno = alunoutilService.alunoServiceFindByUsuario(usuario.get());
+//					alunoutilService.alunoServiceDelete(aluno.getRa());
+//					break;
+//				case AVALIADOR:
+//						break;
+//			}
+//	
+//			mensagem.setMensagem("Pessoa removida com sucesso");
+//			return new ResponseEntity<>(mensagem, HttpStatus.OK);
+//		}
+//	}
+//	
 //
 //
 //	@Override

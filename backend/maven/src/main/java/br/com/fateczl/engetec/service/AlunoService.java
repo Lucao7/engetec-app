@@ -27,28 +27,36 @@ public class AlunoService {
 	@Autowired
 	private AlunoRepository alunoRepository;
 	
-	@Autowired
-	private UsuarioService usuarioService;
+//	@Autowired 
+//	private UsuarioUtilService alunoUsuarioUtilService;
 	
 	//Método para cadastrar alunos 
 	public ResponseEntity<?> cadastrar(AlunoDTO alunoDTO) {
 //		if (!ValidaPassword.validarTamanho(alunoDTO.password())) 
 //			return new ResponseEntity<>
 //		("A senha deve ter no mínimo 6 caracteres", HttpStatus.BAD_REQUEST);
-		if(this.usuarioService.findByEmail(alunoDTO.email()) != null) {
+		
+		//comentei o q esta abaixo agr
+//		if(alunoUsuarioUtilService.usuarioServiceFindByEmail(alunoDTO.email()) != null) {
+//			mensagem.setMensagem("email já existe");
+//			return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+//		} else if(alunoRepository.countByRa(alunoDTO.ra())!=0){
+//			mensagem.setMensagem("RA já existe");
+//			return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+//		}
+		
+		if(alunoRepository.findByEmail(alunoDTO.email()) != null) {
 			mensagem.setMensagem("email já existe");
 			return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
 		} else if(alunoRepository.countByRa(alunoDTO.ra())!=0){
 			mensagem.setMensagem("RA já existe");
 			return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
 		}
-		
 		String encryptedPassword = new BCryptPasswordEncoder().encode(alunoDTO.password());
-		
+		System.out.println(alunoDTO.email());
 		Usuario usuario = new Usuario(alunoDTO.email(), alunoDTO.nome(), encryptedPassword, UsuarioRole.ALUNO);
-		Usuario usuarioSalvo = usuarioService.cadastrar(usuario);
+		Aluno aluno = new Aluno(alunoDTO.ra(), usuario);
 		
-		Aluno aluno = new Aluno(alunoDTO.ra(), usuarioSalvo);
 		return new ResponseEntity<>(alunoRepository.save(aluno), HttpStatus.CREATED);
 	}
 	
@@ -125,21 +133,25 @@ public class AlunoService {
 		
 	} 
 	
-	// Método para remover registros
-	public ResponseEntity<?> remover(Long ra){
-		
-		if(alunoRepository.countByRa(ra) == 0) {
-			mensagem.setMensagem("O RA informado não existe.");
-			return new ResponseEntity<>(mensagem, HttpStatus.NOT_FOUND);
-		}else {
-			Aluno aluno = findByRa(ra);
-			alunoRepository.delete(aluno);
-			
-			mensagem.setMensagem("Pessoa removida com sucesso");
-			return new ResponseEntity<>(mensagem, HttpStatus.OK);
-		}
-		
-	}
+//	public Aluno findByUsuario(Usuario usuario) {
+//		return alunoRepository.findByUsuario(usuario);
+//	}
+	
+//	// Método para remover registros
+//	public ResponseEntity<?> remover(Long ra){
+//		
+//		if(alunoRepository.countByRa(ra) == 0) {
+//			mensagem.setMensagem("O RA informado não existe.");
+//			return new ResponseEntity<>(mensagem, HttpStatus.NOT_FOUND);
+//		}else {
+//			Aluno aluno = findByRa(ra);
+//			alunoRepository.delete(aluno);
+//			
+//			mensagem.setMensagem("Pessoa removida com sucesso");
+//			return new ResponseEntity<>(mensagem, HttpStatus.OK);
+//		}
+//		
+//	}
 
 	public Aluno findByRa(Long ra) {
 		return alunoRepository.findByRa(ra);
@@ -163,5 +175,16 @@ public class AlunoService {
 //				alunoDTO.getNome());
 //		return aluno;
 //	}
+
+	public ResponseEntity<?> delete(Long documento) {
+		if(alunoRepository.countByRa(documento)!=0) {
+			
+			alunoRepository.deleteById(
+					alunoRepository.findByRa(documento).getId());
+			return new ResponseEntity(HttpStatus.OK);
+		}
+		String mensagem = "Não há esse RA";
+		return new ResponseEntity(mensagem, HttpStatus.NOT_FOUND);
+	}
 			
 }

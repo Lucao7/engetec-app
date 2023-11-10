@@ -3,6 +3,8 @@ package br.com.fateczl.engetec.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -12,16 +14,18 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
-public class Avaliador {
-	@Id
+@DiscriminatorValue("AVALIADOR")
+public class Avaliador extends Usuario{
+//	@Id
+	@Column(unique = true)
 	private Long matricula;
 	@OneToMany(mappedBy = "avaliador")
 	private List<Avaliacao> avaliacoes;
 	@ManyToMany(mappedBy = "avaliadores")
 	private List<Area> areas;
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_id")
-	private Usuario usuario;
+//	@OneToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "usuario_id")
+//	private Usuario usuario;
 	
 	public Avaliador() {
 		super();
@@ -30,7 +34,11 @@ public class Avaliador {
 
 	public Avaliador(Long matricula, Usuario usuario) {
 		this.matricula = matricula;
-		this.usuario = usuario;
+//		this.usuario = usuario;
+		this.setEmail(usuario.getEmail());
+		this.setNome(usuario.getNome());
+		this.setPassword(usuario.getPassword());
+		this.setUsuarioRoles(usuario.getRole());
 		this.areas = new ArrayList<Area>();
 		this.avaliacoes = new ArrayList<Avaliacao>();
 	}
@@ -59,13 +67,13 @@ public class Avaliador {
 		this.areas = areas;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+//	public Usuario getUsuario() {
+//		return usuario;
+//	}
+//
+//	public void setUsuario(Usuario usuario) {
+//		this.usuario = usuario;
+//	}
 
 	
 }
