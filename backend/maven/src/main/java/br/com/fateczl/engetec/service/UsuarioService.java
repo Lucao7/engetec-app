@@ -86,7 +86,17 @@ public class UsuarioService {
 //			return new ResponseEntity<>(mensagem, HttpStatus.OK);
 //		}
 //	}
-//	
+
+	public ResponseEntity<?> remover(Long id) {
+		if(usuarioRepository.countById(id) == 0) {
+			mensagem.setMensagem("O ID informado não existe.");
+			return new ResponseEntity<>(mensagem, HttpStatus.NOT_FOUND);
+		}else {
+			usuarioRepository.deleteById(id);
+			mensagem.setMensagem("Pessoa removida com sucesso");
+			return new ResponseEntity<>(mensagem, HttpStatus.OK);
+		}
+	}
 //
 //
 //	@Override

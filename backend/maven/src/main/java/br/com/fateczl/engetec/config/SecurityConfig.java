@@ -20,6 +20,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import br.com.fateczl.engetec.security.JWTAuthenticationEntryPoint;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -27,12 +29,17 @@ public class SecurityConfig {
 	@Autowired
 	SecurityFilter securityFilter;
 	
+	@Autowired
+    private JWTAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+	
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http
+//		.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+//        .and()
 		.csrf(csrf -> csrf.disable())
         .cors(Customizer.withDefaults())
-        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(authorize -> authorize
         		.requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
         		.requestMatchers(HttpMethod.POST, "/aluno").permitAll()
