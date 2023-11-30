@@ -10,33 +10,47 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fateczl.engetec.entity.Aluno;
 import br.com.fateczl.engetec.entity.Avaliador;
+import br.com.fateczl.engetec.entity.Usuario;
 import br.com.fateczl.engetec.security.TokenService;
 import br.com.fateczl.engetec.service.AlunoService;
 import br.com.fateczl.engetec.service.AvaliadorService;
 import br.com.fateczl.engetec.service.UsuarioService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
-	
+
 	@Autowired
 	UsuarioService usuarioService;
-	
+
 	@Autowired
 	AvaliadorService avaliadorService;
-	
+
 	@Autowired
 	AlunoService alunoService;
-	
+
 	@Autowired
 	TokenService tokenService;
-	
+
+	@PatchMapping("/{nome}/{email}/{id}")
+	public ResponseEntity<?> editar(@PathVariable @NotBlank String nome, 
+			@PathVariable @Email String email, @PathVariable Long id) {
+		return usuarioService.editar(nome, email, id);
+	}
+
 	@DeleteMapping
 	public ResponseEntity<?> remover() {
 //        // Obtém a autenticação atual do contexto de segurança
@@ -52,26 +66,23 @@ public class UsuarioController {
 //            }
 //        }
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(authentication.getPrincipal());
+		System.out.println(authentication.getPrincipal());
 		if (authentication != null && authentication.isAuthenticated()) {
-            // Obter as roles do usuário
-            List<String> roles = authentication.getAuthorities().stream()
-                    .map(Object::toString)
-                    .collect(Collectors.toList());
-            
-            System.out.println("Roles do usuário: " + roles);
-            if(roles.get(0).equals("ROLE_ALUNO")){
-        		Aluno aluno = (Aluno) authentication.getPrincipal();
+			// Obter as roles do usuário
+			List<String> roles = authentication.getAuthorities().stream().map(Object::toString)
+					.collect(Collectors.toList());
+
+			System.out.println("Roles do usuário: " + roles);
+			if (roles.get(0).equals("ROLE_ALUNO")) {
+				Aluno aluno = (Aluno) authentication.getPrincipal();
 //            	return alunoService.delete(aluno.getRa());
-        		return usuarioService.remover(aluno.getId());
-            }
-            else if(roles.get(0).equals("ROLE_AVALIADOR")) {
-            	Avaliador avaliador = (Avaliador) authentication.getPrincipal();
+				return usuarioService.remover(aluno.getId());
+			} else if (roles.get(0).equals("ROLE_AVALIADOR")) {
+				Avaliador avaliador = (Avaliador) authentication.getPrincipal();
 //            	return avaliadorService.delete(avaliador.getMatricula());
-        		return usuarioService.remover(avaliador.getId());
-            }
-        }
-        return new ResponseEntity("não autenticado", HttpStatus.FORBIDDEN);
+				return usuarioService.remover(avaliador.getId());
+			}
+		}
+		return new ResponseEntity("não autenticado", HttpStatus.FORBIDDEN);
 	}
-} 
-	
+}

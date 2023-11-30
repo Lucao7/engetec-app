@@ -49,6 +49,25 @@ public class UsuarioService {
 //		}
 //	}
 	
+	public ResponseEntity<?> editar(String nome, String email, Long id) {
+		if(usuarioRepository.countById(id) == 0) {
+			mensagem.setMensagem("O ID informado não existe.");
+			return new ResponseEntity<>(mensagem, HttpStatus.NOT_FOUND);
+		}else {
+			Usuario usuarioAntigo = (Usuario) usuarioRepository.findById(id).get();
+			if ((email!=usuarioAntigo.getEmail())
+					&&(usuarioRepository.countByEmail(email)!=0)) {
+				mensagem.setMensagem("O email já existe");
+				return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+			}
+			usuarioAntigo.setEmail(email);
+			usuarioAntigo.setNome(nome);
+			usuarioRepository.save(usuarioAntigo);
+			mensagem.setMensagem("Pessoa alterada com sucesso");
+			return new ResponseEntity<>(mensagem, HttpStatus.OK);
+		}
+	}
+	
 	//Método para cadastrar alunos 
 //	public Usuario cadastrar(Usuario usuario) {
 //		return usuarioRepository.save(usuario);
